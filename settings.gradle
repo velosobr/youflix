@@ -1,0 +1,2 @@
+rootProject.name='Youflix'
+include ':app'
