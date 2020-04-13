@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Youflix</string>
+    <string name="btn_actv_entrar">Entrar</string>
+    <string name="youflix">YouFlix</string>
 </resources>

@@ -1,7 +1,8 @@
-package com.cursoandroid.youflix
+package com.cursoandroid.youflix.Presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.cursoandroid.youflix.R
 
 class MainActivity : AppCompatActivity() {
 
