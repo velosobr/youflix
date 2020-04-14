@@ -4,14 +4,14 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Presentation.SplashScreenActivity">
+    tools:context=".Presentation.Activity.SplashScreenActivity">
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="@string/youflix"
+        android:text="@string/app_name"
         android:textAlignment="center"
         android:textColor="#DD0A0A"
         android:textSize="36sp" />
