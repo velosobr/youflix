@@ -27,3 +27,16 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+def getLocalPropertiesOrEnviromentKey(key) {
+
+    def propertiesFile = project.rootProject.file('local.properties')
+
+    if (propertiesFile.exists()) {
+        def inputStream = propertiesFile.newDataInputStream()
+        Properties properties = new Properties()
+        properties.load(inputStream)
+        return properties.getProperty(key)
+    } else
+        return System.getenv(key)
+}

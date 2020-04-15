@@ -1,4 +1,4 @@
-package com.cursoandroid.youflix.Presentation
+package com.cursoandroid.youflix.Presentation.Activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -21,7 +21,7 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private fun mostrarLogin() {
-        val intent = Intent(this, LoginActivity::class.java)
+        val intent = Intent(this, playerActivity::class.java)
         startActivity(intent)
         finish()
 

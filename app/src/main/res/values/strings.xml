@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Youflix</string>
+    <string name="app_name">YouFlix</string>
     <string name="btn_actv_entrar">Entrar</string>
-    <string name="youflix">YouFlix</string>
+    <string name="player_error">Error initializing YouTube player: %s</string>
+    <string name="seek_to">Jump To</string>
+    <string name="seek_to_hint">Seconds</string>
 </resources>

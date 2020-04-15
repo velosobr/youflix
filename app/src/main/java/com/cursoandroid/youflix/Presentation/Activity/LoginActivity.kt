@@ -1,4 +1,4 @@
-package com.cursoandroid.youflix.Presentation
+package com.cursoandroid.youflix.Presentation.Activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
