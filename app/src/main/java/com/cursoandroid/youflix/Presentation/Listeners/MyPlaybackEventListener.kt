@@ -7,7 +7,7 @@ open class MyPlaybackEventListener : YouTubePlayer.PlaybackEventListener {
     //    2 TODO: não consigo utilizar o o Toast.makeText
 
     fun showMessage(message: String) {
-        Log.i("tagMessage", message)
+        Log.i("tag Message", message)
     }
 
     override fun onSeekTo(p0: Int) {
