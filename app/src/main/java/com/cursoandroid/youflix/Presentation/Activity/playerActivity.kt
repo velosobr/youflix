@@ -3,11 +3,11 @@ package com.cursoandroid.youflix.Presentation.Activity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import com.cursoandroid.youflix.Presentation.Listeners.MyPlaybackEventListener
 import com.cursoandroid.youflix.Presentation.Listeners.MyPlayerStateChangeListener
+import com.cursoandroid.youflix.Presentation.helper.LocalKeys
 import com.cursoandroid.youflix.R
-import com.cursoandroid.youflix.YOUTUBE_KEY
-
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
@@ -15,18 +15,19 @@ import com.google.android.youtube.player.YouTubePlayerView
 
 class playerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
 
-    private val key = YOUTUBE_KEY
+    private val key = LocalKeys().YOUTUBE_KEY
     private lateinit var youflixPlayerView: YouTubePlayerView
 
     private lateinit var playerStateChangeListener: MyPlayerStateChangeListener
     private lateinit var playbackEventListener: MyPlaybackEventListener
-
+    private lateinit var toolbar: Toolbar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player)
 
+
         youflixPlayerView = findViewById(R.id.viewYoutubePlayer)
-        youflixPlayerView.initialize(YOUTUBE_KEY, this)
+        youflixPlayerView.initialize(LocalKeys().YOUTUBE_KEY, this)
 
         playerStateChangeListener = MyPlayerStateChangeListener()
         playbackEventListener = MyPlaybackEventListener()

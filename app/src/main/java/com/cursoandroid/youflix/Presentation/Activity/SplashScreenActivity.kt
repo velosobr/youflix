@@ -15,13 +15,20 @@ class SplashScreenActivity : AppCompatActivity() {
 
         handler.postDelayed({
             run {
-                mostrarLogin()
+                showMainActivity()
             }
         }, 2000)
     }
 
     private fun mostrarLogin() {
-        val intent = Intent(this, playerActivity::class.java)
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
+
+    }
+
+    private fun showMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
 
