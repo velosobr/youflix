@@ -1,4 +1,4 @@
-package com.cursoandroid.youflix.Presentation.adapters
+package com.cursoandroid.youflix.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,12 +8,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
-import com.cursoandroid.youflix.Presentation.Activity.MainActivity
-import com.cursoandroid.youflix.Presentation.Model.Video
+import com.cursoandroid.youflix.Activity.MainActivity
 import com.cursoandroid.youflix.R
+import com.cursoandroid.youflix.models.Item
 
 class VideoAdapter(
-    listVideos: ArrayList<Video>,
+    listVideos: List<Item>,
     mainActivity: MainActivity
 ) : Adapter<VideoAdapter.ViewHolder>() {
     private var videos = listVideos
@@ -40,6 +40,6 @@ class VideoAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var video = videos.get(position)
-        holder.title.text = video.title
+        holder.title.text = video.snippet.title
     }
 }
