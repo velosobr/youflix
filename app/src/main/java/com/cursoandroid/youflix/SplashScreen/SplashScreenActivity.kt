@@ -1,9 +1,11 @@
-package com.cursoandroid.youflix.Presentation.Activity
+package com.cursoandroid.youflix.SplashScreen
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import com.cursoandroid.youflix.Activity.LoginActivity
+import com.cursoandroid.youflix.Activity.MainActivity
 import com.cursoandroid.youflix.R
 
 class SplashScreenActivity : AppCompatActivity() {

@@ -1,29 +1,44 @@
-package com.cursoandroid.youflix.Presentation.Activity
+package com.cursoandroid.youflix.Activity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.cursoandroid.youflix.Presentation.Model.Video
-import com.cursoandroid.youflix.Presentation.adapters.VideoAdapter
+import com.cursoandroid.youflix.Data.LocalData
 import com.cursoandroid.youflix.R
+import com.cursoandroid.youflix.adapters.VideoAdapter
+import com.cursoandroid.youflix.helper.RetrofitConfig
+import com.cursoandroid.youflix.helper.YoutubeConfig
+import com.cursoandroid.youflix.models.Item
+import com.cursoandroid.youflix.models.Resultado
+import com.cursoandroid.youflix.service.IVideoServiceAccess
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import com.miguelcatalan.materialsearchview.MaterialSearchView.OnQueryTextListener
 import com.miguelcatalan.materialsearchview.MaterialSearchView.SearchViewListener
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     //widgets
     private lateinit var recyclerVideos: RecyclerView
     private lateinit var searchView: MaterialSearchView
+    private lateinit var toolbar: Toolbar
 
-
-    private var videos = arrayListOf<Video>()
     private lateinit var videoAdapter: VideoAdapter
 
-    private lateinit var toolbar: Toolbar
+    //Retrofit
+    private lateinit var retrofit: Retrofit
+
+    private var videos: List<Item> = ArrayList()
+    private lateinit var result: Resultado
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -32,14 +47,20 @@ class MainActivity : AppCompatActivity() {
         recyclerVideos = findViewById(R.id.recyclerVideos)
         searchView = findViewById(R.id.searchView)
 
+        //config retrofit
+        retrofit = RetrofitConfig().returnRetrofit()
 
-//        config toolbar
+
+        //config toolbar
         toolbar = findViewById(R.id.toolbar)
         toolbar.title = "YouFlix"
         setSupportActionBar(toolbar)
 
-//        config RecyclerView
+        //Recupera Videos
         restoreVideos()
+
+
+//        config RecyclerView
         videoAdapter = VideoAdapter(videos, this)
         recyclerVideos.setHasFixedSize(true)
         recyclerVideos.setLayoutManager(LinearLayoutManager(this))
@@ -73,14 +94,35 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun restoreVideos() {
-        val video1 = Video()
-        video1.title = "Video 1 muito interessante"
-        val video2 = Video()
-        video2.title = "Video 2 muito interessante"
+    fun restoreVideos() {
+        val videoServiceAccess = retrofit.create(IVideoServiceAccess::class.java)
 
-        videos.add(video1)
-        videos.add(video2)
+        videoServiceAccess.restoreVideoList(
+            "snippet",
+            "date",
+            "20",
+            LocalData.YOUTUBE_API_KEY,
+            YoutubeConfig.CHANNEL_ID
+        ).enqueue(
+            object : Callback<Resultado> {
+                override fun onResponse(call: Call<Resultado>, response: Response<Resultado>) {
+                    Log.d("resultado", "resultado: $response");
+                    if (response.isSuccessful) {
+                        println("entrou no if do is Success")
+                        result = response.body()!!
+                        videos = result.items
+                        println("Resultado: ${result.items[0].id.videoId}")
+                    }
+                }
+
+                override fun onFailure(call: Call<Resultado>, t: Throwable) {
+                    println("testando failure")
+                    t.printStackTrace()
+                }
+
+
+            })
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

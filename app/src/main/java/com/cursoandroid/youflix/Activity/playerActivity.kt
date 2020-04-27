@@ -1,21 +1,22 @@
-package com.cursoandroid.youflix.Presentation.Activity
+package com.cursoandroid.youflix.Activity
 
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
-import com.cursoandroid.youflix.Presentation.Listeners.MyPlaybackEventListener
-import com.cursoandroid.youflix.Presentation.Listeners.MyPlayerStateChangeListener
-import com.cursoandroid.youflix.Presentation.helper.LocalKeys
+import com.cursoandroid.youflix.Data.LocalData.Companion.YOUTUBE_API_KEY
+import com.cursoandroid.youflix.Listeners.MyPlaybackEventListener
+import com.cursoandroid.youflix.Listeners.MyPlayerStateChangeListener
 import com.cursoandroid.youflix.R
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import com.google.android.youtube.player.YouTubePlayerView
+import java.lang.ref.WeakReference
 
 class playerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
 
-    private val key = LocalKeys().YOUTUBE_KEY
     private lateinit var youflixPlayerView: YouTubePlayerView
 
     private lateinit var playerStateChangeListener: MyPlayerStateChangeListener
@@ -27,10 +28,10 @@ class playerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListene
 
 
         youflixPlayerView = findViewById(R.id.viewYoutubePlayer)
-        youflixPlayerView.initialize(LocalKeys().YOUTUBE_KEY, this)
+        youflixPlayerView.initialize(YOUTUBE_API_KEY, this)
 
         playerStateChangeListener = MyPlayerStateChangeListener()
-        playbackEventListener = MyPlaybackEventListener()
+        playbackEventListener = MyPlaybackEventListener(WeakReference<Activity>(this))
 
 
     }

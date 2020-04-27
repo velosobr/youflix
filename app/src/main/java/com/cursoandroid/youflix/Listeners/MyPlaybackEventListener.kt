@@ -1,12 +1,18 @@
-package com.cursoandroid.youflix.Presentation.Listeners
+package com.cursoandroid.youflix.Listeners
 
+import android.app.Activity
 import android.util.Log
+import android.widget.Toast
 import com.google.android.youtube.player.YouTubePlayer
+import java.lang.ref.WeakReference
 
-open class MyPlaybackEventListener : YouTubePlayer.PlaybackEventListener {
+open class MyPlaybackEventListener(val weakReference: WeakReference<Activity>) :
+    YouTubePlayer.PlaybackEventListener {
     //    2 TODO: não consigo utilizar o o Toast.makeText
 
     fun showMessage(message: String) {
+        Toast.makeText(weakReference.get(), message, Toast.LENGTH_SHORT).show()
+
         Log.i("tag Message", message)
     }
 
