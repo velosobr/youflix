@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.cursoandroid.youflix.Activity.MainActivity
 import com.cursoandroid.youflix.R
 import com.cursoandroid.youflix.models.Item
+import com.squareup.picasso.Picasso
 
 class VideoAdapter(
     listVideos: List<Item>,
@@ -39,7 +40,11 @@ class VideoAdapter(
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var video = videos.get(position)
+        var video: Item = videos.get(position)
         holder.title.text = video.snippet.title
+
+        var url = video.snippet.thumbnails.high.url
+
+        Picasso.get().load(url).into(holder.cover)
     }
 }

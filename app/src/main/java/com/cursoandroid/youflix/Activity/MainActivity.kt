@@ -31,13 +31,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var searchView: MaterialSearchView
     private lateinit var toolbar: Toolbar
 
-    private lateinit var videoAdapter: VideoAdapter
-
     //Retrofit
     private lateinit var retrofit: Retrofit
 
-    private var videos: List<Item> = ArrayList()
+    private var listaVideos: List<Item> = ArrayList()
     private lateinit var result: Resultado
+    private lateinit var videoAdapter: VideoAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,13 +57,6 @@ class MainActivity : AppCompatActivity() {
 
         //Recupera Videos
         restoreVideos()
-
-
-//        config RecyclerView
-        videoAdapter = VideoAdapter(videos, this)
-        recyclerVideos.setHasFixedSize(true)
-        recyclerVideos.setLayoutManager(LinearLayoutManager(this))
-        recyclerVideos.adapter = videoAdapter
 
         //Configura métodos para SearchView
 
@@ -110,7 +102,8 @@ class MainActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         println("entrou no if do is Success")
                         result = response.body()!!
-                        videos = result.items
+                        listaVideos = result.items
+                        configRecyclerView()
                         println("Resultado: ${result.items[0].id.videoId}")
                     }
                 }
@@ -119,10 +112,15 @@ class MainActivity : AppCompatActivity() {
                     println("testando failure")
                     t.printStackTrace()
                 }
-
-
             })
 
+    }
+
+    fun configRecyclerView() {
+        videoAdapter = VideoAdapter(listaVideos, this)
+        recyclerVideos.setHasFixedSize(true)
+        recyclerVideos.setLayoutManager(LinearLayoutManager(this))
+        recyclerVideos.adapter = videoAdapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
