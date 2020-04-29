@@ -4,15 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity.playerActivity">
+    android:background="@android:color/black"
+    tools:context=".Activity.PlayerActivity">
 
-    <view
+    <com.google.android.youtube.player.YouTubePlayerView
         android:id="@+id/viewYoutubePlayer"
-        class="com.google.android.youtube.player.YouTubePlayerView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginHorizontal="8dp"
-        android:layout_marginVertical="8dp" />
+        android:layout_height="344dp" />
 
+    <TextView
+        android:id="@+id/textTitlePlayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Title_Video"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textDescriptPlayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Description" />
 
 </LinearLayout>

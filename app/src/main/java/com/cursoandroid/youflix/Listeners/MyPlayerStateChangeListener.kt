@@ -5,8 +5,6 @@ import com.google.android.youtube.player.YouTubePlayer
 
 open class MyPlayerStateChangeListener : YouTubePlayer.PlayerStateChangeListener {
 
-//    1 TODO: não consigo utilizar o o Toast.makeText
-
     fun showMessage(message: String) {
         Log.i("tagMessage", message)
     }

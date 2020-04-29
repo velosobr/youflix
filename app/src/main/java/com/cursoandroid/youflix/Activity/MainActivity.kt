@@ -1,13 +1,18 @@
 package com.cursoandroid.youflix.Activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.View
+import android.widget.AdapterView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cursoandroid.youflix.Data.LocalData
+import com.cursoandroid.youflix.Listeners.RecyclerItemClickListener
 import com.cursoandroid.youflix.R
 import com.cursoandroid.youflix.adapters.VideoAdapter
 import com.cursoandroid.youflix.helper.RetrofitConfig
@@ -34,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     //Retrofit
     private lateinit var retrofit: Retrofit
 
-    private var listaVideos: List<Item> = ArrayList()
+    private var videosList: List<Item> = ArrayList()
     private lateinit var result: Resultado
     private lateinit var videoAdapter: VideoAdapter
 
@@ -98,13 +103,12 @@ class MainActivity : AppCompatActivity() {
         ).enqueue(
             object : Callback<Resultado> {
                 override fun onResponse(call: Call<Resultado>, response: Response<Resultado>) {
-                    Log.d("resultado", "resultado: $response");
+                    Log.d("resultado", "resultado: $response")
                     if (response.isSuccessful) {
-                        println("entrou no if do is Success")
                         result = response.body()!!
-                        listaVideos = result.items
+                        videosList = result.items
+
                         configRecyclerView()
-                        println("Resultado: ${result.items[0].id.videoId}")
                     }
                 }
 
@@ -117,10 +121,59 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun configRecyclerView() {
-        videoAdapter = VideoAdapter(listaVideos, this)
+        videoAdapter = VideoAdapter(videosList, this)
         recyclerVideos.setHasFixedSize(true)
-        recyclerVideos.setLayoutManager(LinearLayoutManager(this))
+        recyclerVideos.layoutManager = LinearLayoutManager(this)
         recyclerVideos.adapter = videoAdapter
+
+        //Config event Click
+
+        recyclerVideos.addOnItemTouchListener(
+            RecyclerItemClickListener(
+                this@MainActivity,
+                recyclerVideos,
+                object : RecyclerItemClickListener.OnItemClickListener {
+
+                    override fun onItemClick(view: View?, position: Int) {
+                        val video = videosList[position]
+                        val idVideo = video.id.videoId
+                        val description = video.snippet.description
+                        val title = video.snippet.title
+                        Log.i("Titulo:", title)
+                        val publishedAt = video.snippet.publishedAt
+
+                        val intent = Intent(this@MainActivity, PlayerActivity::class.java)
+                        intent.putExtra("idVideo", idVideo)
+                        intent.putExtra("description", description)
+                        intent.putExtra("title", title)
+                        intent.putExtra("publishedAt", publishedAt)
+
+                        startActivity(intent)
+
+                    }
+
+                    override fun onItemClick(
+                        parent: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
+                        TODO("Not yet implemented")
+                    }
+
+
+                    override fun onLongItemClick(view: View?, position: Int) {
+                        Toast.makeText(
+                            this@MainActivity,
+                            "Vai ser um video favorito",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        TODO("implementar a lista de favoritos")
+
+                    }
+
+                })
+        )
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -129,9 +182,6 @@ class MainActivity : AppCompatActivity() {
 
         val item = menu?.findItem(R.id.menu_search)
         searchView.setMenuItem(item)
-
-
-
 
         return true
     }
