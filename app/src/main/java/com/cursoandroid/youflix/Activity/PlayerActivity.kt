@@ -3,8 +3,8 @@ package com.cursoandroid.youflix.Activity
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
 import com.cursoandroid.youflix.Data.LocalData.Companion.YOUTUBE_API_KEY
 import com.cursoandroid.youflix.Listeners.MyPlaybackEventListener
 import com.cursoandroid.youflix.Listeners.MyPlayerStateChangeListener
@@ -15,25 +15,32 @@ import com.google.android.youtube.player.YouTubePlayer
 import com.google.android.youtube.player.YouTubePlayerView
 import java.lang.ref.WeakReference
 
-class playerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
+class PlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
 
-    private lateinit var youflixPlayerView: YouTubePlayerView
-
+    private lateinit var youFlixPlayerView: YouTubePlayerView
+    private lateinit var idVideo: String
     private lateinit var playerStateChangeListener: MyPlayerStateChangeListener
     private lateinit var playbackEventListener: MyPlaybackEventListener
-    private lateinit var toolbar: Toolbar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player)
+        youFlixPlayerView = findViewById(R.id.viewYoutubePlayer)
+        val description: TextView = findViewById(R.id.textDescriptPlayer)
+        val title: TextView = findViewById(R.id.textTitlePlayer)
 
 
-        youflixPlayerView = findViewById(R.id.viewYoutubePlayer)
-        youflixPlayerView.initialize(YOUTUBE_API_KEY, this)
+        val bundle = intent.extras
 
+        if (bundle != null) {
+            idVideo = bundle.getString("idVideo").toString()
+            description.text = bundle.getString("description")
+            title.text = bundle.getString("title")
+
+        }
+        youFlixPlayerView.initialize(YOUTUBE_API_KEY, this)
         playerStateChangeListener = MyPlayerStateChangeListener()
         playbackEventListener = MyPlaybackEventListener(WeakReference<Activity>(this))
-
-
     }
 
     override fun onInitializationSuccess(
@@ -51,9 +58,11 @@ class playerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListene
         ).show()
 
         Log.i("state_player", "state: $wasRestored")
-        if (!wasRestored)
-//            youTubePlayer.cueVideo("_TgrWBZ40cs")
-            youTubePlayer?.cuePlaylist("PLWz5rJ2EKKc_T0fSZc9obnmnWcjvmJdw_")
+        if (!wasRestored) {
+            youTubePlayer?.cueVideo(idVideo)
+
+
+        }
     }
 
     override fun onInitializationFailure(
@@ -67,4 +76,3 @@ class playerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListene
         ).show()
     }
 }
-

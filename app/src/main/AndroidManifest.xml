@@ -11,10 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.cursoandroid.youflix.Activity.playerActivity" />
-        <activity android:name="com.cursoandroid.youflix.Activity.MainActivity" />
+        <activity android:name=".Activity.PlayerActivity"></activity>
+        <activity android:name=".Activity.playerActivityOLD" />
+        <activity android:name=".Activity.MainActivity" />
         <activity
-            android:name="com.cursoandroid.youflix.Activity.LoginActivity"
+            android:name=".Activity.LoginActivity"
             android:theme="@style/AppCompat.TelaCheia" />
         <activity
             android:name=".SplashScreen.SplashScreenActivity"
