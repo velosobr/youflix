@@ -61,14 +61,15 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         //Recupera Videos
-        restoreVideos()
+        restoreVideos("")
 
         //Configura métodos para SearchView
 
         searchView.setOnQueryTextListener(object : OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                println("onQueryTextSubmit")
-                return false
+            override fun onQueryTextSubmit(query: String): Boolean {
+
+                restoreVideos(query)
+                return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
@@ -80,7 +81,7 @@ class MainActivity : AppCompatActivity() {
 
         searchView.setOnSearchViewListener(object : SearchViewListener {
             override fun onSearchViewClosed() {
-                println("onSearchViewClosed")
+                restoreVideos("")
             }
 
             override fun onSearchViewShown() {
@@ -91,15 +92,18 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun restoreVideos() {
+    fun restoreVideos(search: String) {
         val videoServiceAccess = retrofit.create(IVideoServiceAccess::class.java)
+        val q = search.replace(" ", "+", true)
 
         videoServiceAccess.restoreVideoList(
             "snippet",
             "date",
             "20",
             LocalData.YOUTUBE_API_KEY,
-            YoutubeConfig.CHANNEL_ID
+            YoutubeConfig.CHANNEL_ID,
+            q
+
         ).enqueue(
             object : Callback<Resultado> {
                 override fun onResponse(call: Call<Resultado>, response: Response<Resultado>) {
@@ -168,7 +172,7 @@ class MainActivity : AppCompatActivity() {
                             "Vai ser um video favorito",
                             Toast.LENGTH_SHORT
                         ).show()
-                        TODO("implementar a lista de favoritos")
+                        //TODO("implementar a lista de favoritos")
 
                     }
 
