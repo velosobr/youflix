@@ -1,4 +1,4 @@
-package com.cursoandroid.youflix.Activity
+package com.cursoandroid.youflix.Login
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

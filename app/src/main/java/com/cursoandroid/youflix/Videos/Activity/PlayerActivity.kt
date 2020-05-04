@@ -1,14 +1,14 @@
-package com.cursoandroid.youflix.Activity
+package com.cursoandroid.youflix.Videos.Activity
 
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
-import com.cursoandroid.youflix.Data.LocalData.Companion.YOUTUBE_API_KEY
-import com.cursoandroid.youflix.Listeners.MyPlaybackEventListener
-import com.cursoandroid.youflix.Listeners.MyPlayerStateChangeListener
 import com.cursoandroid.youflix.R
+import com.cursoandroid.youflix.Videos.Data.LocalData.Companion.YOUTUBE_API_KEY
+import com.cursoandroid.youflix.Videos.Listeners.MyPlaybackEventListener
+import com.cursoandroid.youflix.Videos.Listeners.MyPlayerStateChangeListener
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
