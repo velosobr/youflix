@@ -11,15 +11,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.cursoandroid.youflix.Data.API.RetrofitConfig
+import com.cursoandroid.youflix.Data.API.VideoServiceAccess
 import com.cursoandroid.youflix.R
 import com.cursoandroid.youflix.Videos.Data.LocalData
 import com.cursoandroid.youflix.Videos.Listeners.RecyclerItemClickListener
 import com.cursoandroid.youflix.Videos.adapters.VideoAdapter
-import com.cursoandroid.youflix.Videos.helper.RetrofitConfig
 import com.cursoandroid.youflix.Videos.helper.YoutubeConfig
 import com.cursoandroid.youflix.Videos.models.Item
 import com.cursoandroid.youflix.Videos.models.Resultado
-import com.cursoandroid.youflix.service.IVideoServiceAccess
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import com.miguelcatalan.materialsearchview.MaterialSearchView.OnQueryTextListener
 import com.miguelcatalan.materialsearchview.MaterialSearchView.SearchViewListener
@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun restoreVideos(search: String) {
-        val videoServiceAccess = retrofit.create(IVideoServiceAccess::class.java)
+        val videoServiceAccess = retrofit.create(VideoServiceAccess::class.java)
         val q = search.replace(" ", "+", true)
 
         videoServiceAccess.restoreVideoList(
