@@ -15,6 +15,7 @@ interface IVideoServiceAccess {
     &maxResults=20
     &key=AIzaSyAHMsmSqDQRZcaXzdYI11sJx_jRpb2JmZQ
     &channelId=UCVHFbqXqoYvEWM1Ddxl0QDg
+    &q=desenvolvimento+android
 
     https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&maxResults=20&key=AIzaSyAHMsmSqDQRZcaXzdYI11sJx_jRpb2JmZQ&channelId=UCVHFbqXqoYvEWM1Ddxl0QDg
      */
@@ -24,6 +25,7 @@ interface IVideoServiceAccess {
         @Query("order") order: String,
         @Query("maxResults") maxResults: String,
         @Query("key") key: String,
-        @Query("channelId") channelId: String
+        @Query("channelId") channelId: String,
+        @Query("q") q: String
     ): Call<Resultado>
 }
