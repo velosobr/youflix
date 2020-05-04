@@ -1,5 +1,6 @@
-package com.cursoandroid.youflix.Videos.helper
+package com.cursoandroid.youflix.Data.API
 
+import com.cursoandroid.youflix.Videos.helper.YoutubeConfig
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
