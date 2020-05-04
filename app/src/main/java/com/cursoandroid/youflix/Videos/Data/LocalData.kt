@@ -1,4 +1,4 @@
-package com.cursoandroid.youflix.Data
+package com.cursoandroid.youflix.Videos.Data
 
 class LocalData {
     companion object {

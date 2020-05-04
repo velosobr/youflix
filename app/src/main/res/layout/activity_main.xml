@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:background="@android:color/black"
 
-    tools:context=".Activity.MainActivity">
+    tools:context=".Videos.Activity.MainActivity">
 
     <include layout="@layout/toolbar" />
 

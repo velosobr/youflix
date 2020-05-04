@@ -1,4 +1,4 @@
-package com.cursoandroid.youflix.Activity
+package com.cursoandroid.youflix.Videos.Activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,14 +11,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.cursoandroid.youflix.Data.LocalData
-import com.cursoandroid.youflix.Listeners.RecyclerItemClickListener
 import com.cursoandroid.youflix.R
-import com.cursoandroid.youflix.adapters.VideoAdapter
-import com.cursoandroid.youflix.helper.RetrofitConfig
-import com.cursoandroid.youflix.helper.YoutubeConfig
-import com.cursoandroid.youflix.models.Item
-import com.cursoandroid.youflix.models.Resultado
+import com.cursoandroid.youflix.Videos.Data.LocalData
+import com.cursoandroid.youflix.Videos.Listeners.RecyclerItemClickListener
+import com.cursoandroid.youflix.Videos.adapters.VideoAdapter
+import com.cursoandroid.youflix.Videos.helper.RetrofitConfig
+import com.cursoandroid.youflix.Videos.helper.YoutubeConfig
+import com.cursoandroid.youflix.Videos.models.Item
+import com.cursoandroid.youflix.Videos.models.Resultado
 import com.cursoandroid.youflix.service.IVideoServiceAccess
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import com.miguelcatalan.materialsearchview.MaterialSearchView.OnQueryTextListener

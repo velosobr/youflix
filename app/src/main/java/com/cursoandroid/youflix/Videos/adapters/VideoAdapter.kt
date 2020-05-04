@@ -1,4 +1,4 @@
-package com.cursoandroid.youflix.adapters
+package com.cursoandroid.youflix.Videos.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,9 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
-import com.cursoandroid.youflix.Activity.MainActivity
 import com.cursoandroid.youflix.R
-import com.cursoandroid.youflix.models.Item
+import com.cursoandroid.youflix.Videos.Activity.MainActivity
+import com.cursoandroid.youflix.Videos.models.Item
 import com.squareup.picasso.Picasso
 
 class VideoAdapter(

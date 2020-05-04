@@ -1,4 +1,4 @@
-package com.cursoandroid.youflix.Listeners
+package com.cursoandroid.youflix.Videos.Listeners
 
 import android.app.Activity
 import android.util.Log
@@ -17,22 +17,22 @@ open class MyPlaybackEventListener(val weakReference: WeakReference<Activity>) :
     }
 
     override fun onSeekTo(p0: Int) {
-        showMessage("onSeekTo $p0");
+        showMessage("onSeekTo $p0")
     }
 
     override fun onBuffering(p0: Boolean) {
-        showMessage("onBuffering $p0");
+        showMessage("onBuffering $p0")
     }
 
     override fun onPlaying() {
-        showMessage("Playing");
+        showMessage("Playing")
     }
 
     override fun onStopped() {
-        showMessage("Stopped");
+        showMessage("Stopped")
     }
 
     override fun onPaused() {
-        showMessage("Paused");
+        showMessage("Paused")
     }
 }

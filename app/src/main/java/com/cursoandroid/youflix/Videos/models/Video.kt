@@ -1,4 +1,4 @@
-package com.cursoandroid.youflix.models
+package com.cursoandroid.youflix.Videos.models
 
 data class Video(
     val title: String,
