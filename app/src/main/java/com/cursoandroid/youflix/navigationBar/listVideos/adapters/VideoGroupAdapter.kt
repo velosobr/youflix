@@ -13,10 +13,10 @@ import com.cursoandroid.youflix.navigationBar.listVideos.models.BaseItem
 import com.cursoandroid.youflix.navigationBar.listVideos.models.Item
 import com.squareup.picasso.Picasso
 
-class VideoAdapter(
+class VideoGroupAdapter(
     private val listVideos: List<BaseItem>,
     private val context: Context
-) : Adapter<VideoAdapter.ViewHolder>() {
+) : Adapter<VideoGroupAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -45,7 +45,7 @@ class VideoAdapter(
         val video = listVideos.get(position) as Item
         holder.title.text = video.snippet.title
 
-        val url = video.snippet.thumbnails.high.url
+        val url = video.snippet.thumbnails.medium.url
 
         Picasso.get().load(url).into(holder.cover)
     }

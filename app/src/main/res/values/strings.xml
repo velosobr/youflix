@@ -9,5 +9,6 @@
     <string name="nav_video">Videos</string>
     <string name="nav_favorite">Favoritos</string>
     <string name="nav_logout">Sair</string>
+    <string name="item_image_group">Item image group</string>
 
 </resources>

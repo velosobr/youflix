@@ -14,8 +14,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cursoandroid.youflix.Data.API.RetrofitConfig
 import com.cursoandroid.youflix.Data.API.VideoServiceAccess
 import com.cursoandroid.youflix.R
+import com.cursoandroid.youflix.navigationBar.listVideos.Data.LocalData
 import com.cursoandroid.youflix.navigationBar.listVideos.Listeners.RecyclerItemClickListener
-import com.cursoandroid.youflix.navigationBar.listVideos.adapters.VideoAdapter
+import com.cursoandroid.youflix.navigationBar.listVideos.adapters.VideoGroupAdapter
 import com.cursoandroid.youflix.navigationBar.listVideos.helper.YoutubeConfig
 import com.cursoandroid.youflix.navigationBar.listVideos.models.Item
 import com.cursoandroid.youflix.navigationBar.listVideos.models.Resultado
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
     private var videosList: List<Item> = ArrayList()
     private lateinit var result: Resultado
-    private lateinit var videoAdapter: VideoAdapter
+    private lateinit var videoGroupAdapter: VideoGroupAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -101,7 +102,7 @@ class MainActivity : AppCompatActivity() {
             "date",
             "20",
             LocalData.YOUTUBE_API_KEY,
-            YoutubeConfig.CHANNEL_ID_1,
+            YoutubeConfig.CHANNEL_ID,
             q
 
         ).enqueue(
@@ -125,10 +126,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun configRecyclerView() {
-        videoAdapter = VideoAdapter(videosList, this)
+        videoGroupAdapter = VideoGroupAdapter(videosList, this)
         recyclerVideos.setHasFixedSize(true)
         recyclerVideos.layoutManager = LinearLayoutManager(this)
-        recyclerVideos.adapter = videoAdapter
+        recyclerVideos.adapter = videoGroupAdapter
 
         //Config event Click
 
