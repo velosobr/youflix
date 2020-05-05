@@ -1,4 +1,4 @@
-package com.cursoandroid.youflix.Videos.Listeners
+package com.cursoandroid.youflix.navigationBar.listVideos.Listeners
 
 import android.content.Context
 import android.view.GestureDetector

@@ -1,4 +1,4 @@
-package com.cursoandroid.youflix.Videos.Activity
+package com.cursoandroid.youflix.navigationBar.listVideos.Activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,12 +14,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cursoandroid.youflix.Data.API.RetrofitConfig
 import com.cursoandroid.youflix.Data.API.VideoServiceAccess
 import com.cursoandroid.youflix.R
-import com.cursoandroid.youflix.Videos.Data.LocalData
-import com.cursoandroid.youflix.Videos.Listeners.RecyclerItemClickListener
-import com.cursoandroid.youflix.Videos.adapters.VideoAdapter
-import com.cursoandroid.youflix.Videos.helper.YoutubeConfig
-import com.cursoandroid.youflix.Videos.models.Item
-import com.cursoandroid.youflix.Videos.models.Resultado
+import com.cursoandroid.youflix.navigationBar.listVideos.Listeners.RecyclerItemClickListener
+import com.cursoandroid.youflix.navigationBar.listVideos.adapters.VideoAdapter
+import com.cursoandroid.youflix.navigationBar.listVideos.helper.YoutubeConfig
+import com.cursoandroid.youflix.navigationBar.listVideos.models.Item
+import com.cursoandroid.youflix.navigationBar.listVideos.models.Resultado
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import com.miguelcatalan.materialsearchview.MaterialSearchView.OnQueryTextListener
 import com.miguelcatalan.materialsearchview.MaterialSearchView.SearchViewListener
@@ -61,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         //Recupera Videos
-        restoreVideos("")
+        restoreVideos()
 
         //Configura métodos para SearchView
 
@@ -92,7 +91,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun restoreVideos(search: String) {
+    fun restoreVideos(search: String = "") {
+
         val videoServiceAccess = retrofit.create(VideoServiceAccess::class.java)
         val q = search.replace(" ", "+", true)
 
@@ -101,7 +101,7 @@ class MainActivity : AppCompatActivity() {
             "date",
             "20",
             LocalData.YOUTUBE_API_KEY,
-            YoutubeConfig.CHANNEL_ID,
+            YoutubeConfig.CHANNEL_ID_1,
             q
 
         ).enqueue(
@@ -189,4 +189,6 @@ class MainActivity : AppCompatActivity() {
 
         return true
     }
+
+
 }
