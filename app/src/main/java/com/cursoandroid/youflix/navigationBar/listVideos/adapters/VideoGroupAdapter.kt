@@ -1,4 +1,4 @@
-package com.cursoandroid.youflix.Videos.adapters
+package com.cursoandroid.youflix.navigationBar.listVideos.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,17 +9,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.cursoandroid.youflix.R
-import com.cursoandroid.youflix.Videos.Activity.MainActivity
-import com.cursoandroid.youflix.Videos.models.Item
+import com.cursoandroid.youflix.navigationBar.listVideos.models.BaseItem
+import com.cursoandroid.youflix.navigationBar.listVideos.models.Item
 import com.squareup.picasso.Picasso
 
-class VideoAdapter(
-    listVideos: List<Item>,
-    mainActivity: MainActivity
-) : Adapter<VideoAdapter.ViewHolder>() {
-    private var videos = listVideos
-    private var context: Context = mainActivity
-
+class VideoGroupAdapter(
+    private val listVideos: List<BaseItem>,
+    private val context: Context
+) : Adapter<VideoGroupAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -27,6 +24,11 @@ class VideoAdapter(
         var cover: ImageView = itemView.findViewById(R.id.imageCover)
     }
 
+    override fun getItemViewType(position: Int): Int {
+
+        return listVideos[position].type
+
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View =
             LayoutInflater.from(parent.context).inflate(R.layout.adapter_video, parent, false)
@@ -35,16 +37,18 @@ class VideoAdapter(
     }
 
     override fun getItemCount(): Int {
-        return videos.size
+        return listVideos.size
     }
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var video: Item = videos.get(position)
+        val video = listVideos.get(position) as Item
         holder.title.text = video.snippet.title
 
-        var url = video.snippet.thumbnails.high.url
+        val url = video.snippet.thumbnails.medium.url
 
         Picasso.get().load(url).into(holder.cover)
     }
+
+
 }

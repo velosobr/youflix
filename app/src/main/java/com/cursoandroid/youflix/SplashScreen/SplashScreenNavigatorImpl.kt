@@ -2,7 +2,7 @@ package com.cursoandroid.youflix.SplashScreen
 
 import android.content.Intent
 import com.cursoandroid.youflix.Login.LoginActivity
-import com.cursoandroid.youflix.Videos.Activity.MainActivity
+import com.cursoandroid.youflix.navigationBar.listVideos.Activity.MainActivity
 
 class SplashScreenNavigatorImpl(private val activity: SplashScreenActivity) :
     SplashScreenNavigator {

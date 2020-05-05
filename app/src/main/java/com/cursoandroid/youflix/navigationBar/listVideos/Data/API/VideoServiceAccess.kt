@@ -1,6 +1,6 @@
 package com.cursoandroid.youflix.Data.API
 
-import com.cursoandroid.youflix.Videos.models.Resultado
+import com.cursoandroid.youflix.navigationBar.listVideos.models.Resultado
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
