@@ -2,6 +2,7 @@
 <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bnve"
+    android:theme="@style/MyBottom"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:layout_alignParentBottom="true"

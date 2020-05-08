@@ -18,9 +18,10 @@
         android:layout_weight="1">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerVideos"
+            android:id="@+id/my_recyclr_view_main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:scrollbars="none" />
     </FrameLayout>
 
 
