@@ -4,9 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
-import android.view.View
-import android.widget.AdapterView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,10 +12,11 @@ import com.cursoandroid.youflix.Data.API.RetrofitConfig
 import com.cursoandroid.youflix.Data.API.VideoServiceAccess
 import com.cursoandroid.youflix.R
 import com.cursoandroid.youflix.navigationBar.listVideos.Data.LocalData
-import com.cursoandroid.youflix.navigationBar.listVideos.Listeners.RecyclerItemClickListener
-import com.cursoandroid.youflix.navigationBar.listVideos.adapters.VideoGroupAdapter
+import com.cursoandroid.youflix.navigationBar.listVideos.Listeners.ItemClickListener
+import com.cursoandroid.youflix.navigationBar.listVideos.adapters.MyVideoGroupAdapter
 import com.cursoandroid.youflix.navigationBar.listVideos.helper.YoutubeConfig
-import com.cursoandroid.youflix.navigationBar.listVideos.models.Item
+import com.cursoandroid.youflix.navigationBar.listVideos.models.ItemData
+import com.cursoandroid.youflix.navigationBar.listVideos.models.ItemGroup
 import com.cursoandroid.youflix.navigationBar.listVideos.models.Resultado
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import com.miguelcatalan.materialsearchview.MaterialSearchView.OnQueryTextListener
@@ -27,29 +25,31 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     //widgets
-    private lateinit var recyclerVideos: RecyclerView
+
     private lateinit var searchView: MaterialSearchView
     private lateinit var toolbar: Toolbar
 
-    //Retrofit
     private lateinit var retrofit: Retrofit
 
-    private var videosList: List<Item> = ArrayList()
+    private lateinit var myRecyclerViewVideos: RecyclerView
+
+    private var itemGroups: MutableList<ItemGroup> = mutableListOf()
+
+    private var listResults: MutableList<Resultado> = mutableListOf()
     private lateinit var result: Resultado
-    private lateinit var videoGroupAdapter: VideoGroupAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         //init components
-        recyclerVideos = findViewById(R.id.recyclerVideos)
         searchView = findViewById(R.id.searchView)
+        myRecyclerViewVideos = findViewById(R.id.my_recyclr_view_main)
 
         //config retrofit
         retrofit = RetrofitConfig().returnRetrofit()
@@ -111,7 +111,7 @@ class MainActivity : AppCompatActivity() {
                     Log.d("resultado", "resultado: $response")
                     if (response.isSuccessful) {
                         result = response.body()!!
-                        videosList = result.items
+                        itemGroups.add(ItemGroup("canal 1", result.items))
 
                         configRecyclerView()
                     }
@@ -126,60 +126,37 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun configRecyclerView() {
-        videoGroupAdapter = VideoGroupAdapter(videosList, this)
-        recyclerVideos.setHasFixedSize(true)
-        recyclerVideos.layoutManager = LinearLayoutManager(this)
-        recyclerVideos.adapter = videoGroupAdapter
+        val myVideoGroupAdapter = MyVideoGroupAdapter(this, itemGroups, object : ItemClickListener {
+            override fun onVideoClickListener(itemData: ItemData) {
+                onVideoClick(itemData)
+            }
 
-        //Config event Click
+            override fun onVideoLongClickListener(itemData: ItemData) {
+                Log.i("Longclick", "long click teste")
+            }
 
-        recyclerVideos.addOnItemTouchListener(
-            RecyclerItemClickListener(
-                this@MainActivity,
-                recyclerVideos,
-                object : RecyclerItemClickListener.OnItemClickListener {
+        })
+        //TODO: Como não enviar o itemGroups vazio?
 
-                    override fun onItemClick(view: View?, position: Int) {
-                        val video = videosList[position]
-                        val idVideo = video.id.videoId
-                        val description = video.snippet.description
-                        val title = video.snippet.title
-                        Log.i("Titulo:", title)
-                        val publishedAt = video.snippet.publishedAt
-
-                        val intent = Intent(this@MainActivity, PlayerActivity::class.java)
-                        intent.putExtra("idVideo", idVideo)
-                        intent.putExtra("description", description)
-                        intent.putExtra("title", title)
-                        intent.putExtra("publishedAt", publishedAt)
-
-                        startActivity(intent)
-
-                    }
-
-                    override fun onItemClick(
-                        parent: AdapterView<*>?,
-                        view: View?,
-                        position: Int,
-                        id: Long
-                    ) {
-                        TODO("Not yet implemented")
-                    }
+        myRecyclerViewVideos.adapter = myVideoGroupAdapter
+        myRecyclerViewVideos.setHasFixedSize(true)
+        myRecyclerViewVideos.layoutManager = LinearLayoutManager(this)
 
 
-                    override fun onLongItemClick(view: View?, position: Int) {
-                        Toast.makeText(
-                            this@MainActivity,
-                            "Vai ser um video favorito",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        //TODO("implementar a lista de favoritos")
-
-                    }
-
-                })
-        )
     }
+
+    fun onVideoClick(itemData: ItemData) {
+        val intent = Intent(this@MainActivity, PlayerActivity::class.java)
+        intent.putExtra("idVideo", itemData.id.videoId)
+        intent.putExtra("description", itemData.snippet.description)
+        intent.putExtra("title", itemData.snippet.title)
+        intent.putExtra("publishedAt", itemData.snippet.publishedAt)
+
+        startActivity(intent)
+
+    }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater

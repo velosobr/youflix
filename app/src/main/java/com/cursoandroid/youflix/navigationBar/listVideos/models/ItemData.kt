@@ -1,7 +1,7 @@
 package com.cursoandroid.youflix.navigationBar.listVideos.models
 
-class Item(
+class ItemData(
     type: Int,
     var id: ItemId,
     var snippet: Snippet
-) : BaseItem(type)
+)
