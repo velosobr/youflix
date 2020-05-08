@@ -1,4 +1,4 @@
-package com.cursoandroid.youflix.navigationBar.listVideos.Listeners
+package com.cursoandroid.youflix.navigationBar.listVideos.listeners
 
 import android.util.Log
 import com.google.android.youtube.player.YouTubePlayer

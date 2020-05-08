@@ -6,8 +6,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitConfig {
-    lateinit var retrofit: Retrofit
-    val okHttp = OkHttpClient.Builder()
+    private lateinit var retrofit: Retrofit
+    private val okHttp = OkHttpClient.Builder()
+
     fun returnRetrofit(): Retrofit {
         retrofit = Retrofit.Builder()
             .baseUrl(YoutubeConfig.URL_BASE)

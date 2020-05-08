@@ -11,14 +11,14 @@
 
     </style>
 
-    <style name="MyButton" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorControlHighlight">@color/colorAccent</item>
-        <item name="colorButtonNormal">@color/colorPrimary</item>
-
-    </style>
     <style name="AppCompat.TelaCheia" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowFullscreen">true</item>
 
+    </style>
+
+    <style name="MyBottom">
+        <item name="colorControlHighlight">@color/colorAccent</item>
+        <item name="colorButtonNormal">@color/colorPrimary</item>
     </style>
 
 
