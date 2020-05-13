@@ -10,34 +10,34 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.cursoandroid.youflix.R
 import com.cursoandroid.youflix.navigationBar.listVideos.listeners.ItemClickListener
-import com.cursoandroid.youflix.navigationBar.listVideos.models.ItemData
 import com.cursoandroid.youflix.navigationBar.listVideos.models.ItemGroup
+import com.cursoandroid.youflix.navigationBar.listVideos.models.VideoViewModel
 
 class MyVideoGroupAdapter(
     private val context: Context,
-    private val dataList: List<ItemGroup>,
     var itemClickListener: ItemClickListener
 
 
 ) : Adapter<MyVideoGroupAdapter.MyViewHolder>() {
-
+    private var itemGroups = mutableListOf<ItemGroup>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.layout_group, parent, false)
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.fragment_layout_group, parent, false)
 
         return MyViewHolder(itemView)
     }
 
     override fun getItemCount(): Int {
-        return dataList.size
+        return itemGroups.size
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val item = dataList[position]
+        val item = itemGroups[position]
         holder.itemGroupTitle.text = item.headerTitle
 
-        val itemData: List<ItemData> = dataList[position].listItem
+        val itemData: List<VideoViewModel> = itemGroups[position].listItem
 
         val itemListAdapter = MyItemAdapter(itemData, itemClickListener)
 
@@ -56,7 +56,8 @@ class MyVideoGroupAdapter(
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var itemGroupTitle: TextView = itemView.findViewById(R.id.textItemGroupTitle)
-        var recyclerViewItemList: RecyclerView = itemView.findViewById(R.id.recycler_view_list)
+        var recyclerViewItemList: RecyclerView =
+            itemView.findViewById(R.id.videoGroupListRecyclerView)
 
     }
 }

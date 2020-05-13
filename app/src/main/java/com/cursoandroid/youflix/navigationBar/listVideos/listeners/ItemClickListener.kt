@@ -1,10 +1,10 @@
 package com.cursoandroid.youflix.navigationBar.listVideos.listeners
 
-import com.cursoandroid.youflix.navigationBar.listVideos.models.ItemData
+import com.cursoandroid.youflix.navigationBar.listVideos.models.VideoViewModel
 
 interface ItemClickListener {
 
-    fun onVideoClickListener(itemData: ItemData)
-    fun onVideoLongClickListener(itemData: ItemData)
+    fun onVideoClickListener(itemData: VideoViewModel)
+    fun onVideoLongClickListener(itemData: VideoViewModel)
 
 }

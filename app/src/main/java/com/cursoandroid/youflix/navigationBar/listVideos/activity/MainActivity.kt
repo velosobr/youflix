@@ -1,6 +1,5 @@
 package com.cursoandroid.youflix.navigationBar.listVideos.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -15,9 +14,9 @@ import com.cursoandroid.youflix.navigationBar.listVideos.adapters.MyVideoGroupAd
 import com.cursoandroid.youflix.navigationBar.listVideos.data.LocalData
 import com.cursoandroid.youflix.navigationBar.listVideos.helper.YoutubeConfig
 import com.cursoandroid.youflix.navigationBar.listVideos.listeners.ItemClickListener
-import com.cursoandroid.youflix.navigationBar.listVideos.models.ItemData
 import com.cursoandroid.youflix.navigationBar.listVideos.models.ItemGroup
 import com.cursoandroid.youflix.navigationBar.listVideos.models.Resultado
+import com.cursoandroid.youflix.navigationBar.listVideos.models.VideoViewModel
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import com.miguelcatalan.materialsearchview.MaterialSearchView.OnQueryTextListener
 import com.miguelcatalan.materialsearchview.MaterialSearchView.SearchViewListener
@@ -35,8 +34,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var retrofit: Retrofit
 
     private lateinit var myRecyclerViewVideos: RecyclerView
-
-    private var itemGroups: MutableList<ItemGroup> = mutableListOf()
 
     private lateinit var result: Resultado
 
@@ -106,7 +103,7 @@ class MainActivity : AppCompatActivity() {
             restoreVideoList(
                 "snippet",
                 "date",
-                "40",
+                "1", //numero alterado apenas para poder testar
                 LocalData.YOUTUBE_API_KEY,
                 YoutubeConfig.channelList[2],
                 query
@@ -147,7 +144,7 @@ class MainActivity : AppCompatActivity() {
             restoreVideoList(
                 "snippet",
                 "date",
-                "40",
+                "1", //numero alterado apenas para poder testar
                 LocalData.YOUTUBE_API_KEY,
                 YoutubeConfig.channelList[channelPosition],
                 query
@@ -179,12 +176,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun configRecyclerView() {
-        val myVideoGroupAdapter = MyVideoGroupAdapter(this, itemGroups, object : ItemClickListener {
-            override fun onVideoClickListener(itemData: ItemData) {
-                onVideoClick(itemData)
+        val myVideoGroupAdapter = MyVideoGroupAdapter(this, object : ItemClickListener {
+            override fun onVideoClickListener(video: VideoViewModel) {
+                onVideoClick(video)
             }
 
-            override fun onVideoLongClickListener(itemData: ItemData) {
+            override fun onVideoLongClickListener(itemData: VideoViewModel) {
                 Log.i("Longclick", "long click teste")
             }
 
@@ -194,14 +191,8 @@ class MainActivity : AppCompatActivity() {
         myRecyclerViewVideos.layoutManager = LinearLayoutManager(this)
     }
 
-    fun onVideoClick(itemData: ItemData) {
-        val intent = Intent(this@MainActivity, PlayerActivity::class.java)
-        intent.putExtra("idVideo", itemData.id.videoId)
-        intent.putExtra("description", itemData.snippet.description)
-        intent.putExtra("title", itemData.snippet.title)
-        intent.putExtra("publishedAt", itemData.snippet.publishedAt)
+    fun onVideoClick(video: VideoViewModel) {
 
-        startActivity(intent)
 
     }
 
@@ -214,6 +205,5 @@ class MainActivity : AppCompatActivity() {
 
         return true
     }
-
 
 }
