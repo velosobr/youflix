@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/bnve"
-    android:theme="@style/MyBottom"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize"
-    android:layout_alignParentBottom="true"
-    app:itemIconTint="@android:color/darker_gray"
-    app:itemTextColor="@android:color/white"
-    app:menu="@menu/bottom_navigation" />
+    android:layout_height="match_parent"
+    tools:context=".navigationBar.BottomNavigationActivity">
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation" />
+
+    <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:theme="@style/MyBottom"
+        app:itemIconTint="@android:color/darker_gray"
+        app:itemTextColor="@android:color/white"
+        app:menu="@menu/bottom_navigation" />
+</RelativeLayout>
+
