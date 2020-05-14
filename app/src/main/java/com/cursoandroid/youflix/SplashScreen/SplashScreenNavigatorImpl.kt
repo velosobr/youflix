@@ -2,7 +2,7 @@ package com.cursoandroid.youflix.SplashScreen
 
 import android.content.Intent
 import com.cursoandroid.youflix.Login.LoginActivity
-import com.cursoandroid.youflix.navigationBar.listVideos.activity.MainActivity
+import com.cursoandroid.youflix.navigationBar.VideosScreen.VideosScreenActivity
 
 class SplashScreenNavigatorImpl(private val activity: SplashScreenActivity) :
     SplashScreenNavigator {
@@ -13,7 +13,7 @@ class SplashScreenNavigatorImpl(private val activity: SplashScreenActivity) :
     }
 
     override fun goToMain() {
-        val mainIntent = Intent(activity, MainActivity::class.java)
+        val mainIntent = Intent(activity, VideosScreenActivity::class.java)
         activity.startActivity(mainIntent)
     }
 }
