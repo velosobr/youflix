@@ -6,7 +6,7 @@
     android:background="@color/cinza_bg"
     android:orientation="vertical"
 
-    tools:context=".navigationBar.listVideos.activity.MainActivity">
+    tools:context=".navigationBar.VideosScreen.VideosScreenActivity">
 
     <include layout="@layout/toolbar" />
 

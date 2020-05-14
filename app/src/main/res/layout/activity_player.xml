@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@android:color/black"
-    tools:context=".navigationBar.listVideos.activity.PlayerActivity">
+    tools:context=".navigationBar.VideosScreen.activity.PlayerActivity">
 
     <com.google.android.youtube.player.YouTubePlayerView
         android:id="@+id/viewYoutubePlayer"
