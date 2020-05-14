@@ -8,6 +8,5 @@ class BottomNavigationControllerImpl(
     handler: Handler
 ) : BottomNavigationController {
     override fun onViewCreated() {
-        TODO("Not yet implemented")
     }
 }
