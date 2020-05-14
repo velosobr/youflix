@@ -8,7 +8,7 @@ import java.lang.ref.WeakReference
 
 open class MyPlaybackEventListener(val weakReference: WeakReference<Activity>) :
     YouTubePlayer.PlaybackEventListener {
-    //    2 TODO: não consigo utilizar o o Toast.makeText
+    //    2 TODO: Exemplo de weakReference
 
     fun showMessage(message: String) {
         Toast.makeText(weakReference.get(), message, Toast.LENGTH_SHORT).show()

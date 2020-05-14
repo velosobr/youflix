@@ -6,6 +6,6 @@ trying to make it trobust, maintainable, testable and flexible enough to adapt t
 
 ### 3 main use cases:
 
-Get a list of movies.
-Show details for an specific clicked movie.
-Play a movie.
+Get a list of videos.
+Show details for an specific clicked Video.
+Play a Video.

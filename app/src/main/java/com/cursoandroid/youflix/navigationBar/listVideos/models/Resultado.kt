@@ -5,6 +5,6 @@ class Resultado(
 
     val regionCode: String,
     val pageInfo: PageInfo,
-    val items: List<ItemData>
+    val items: List<VideoViewModel>
 
 )

@@ -1,0 +1,3 @@
+package com.cursoandroid.youflix.navigationBar.favoriteVideos
+
+class FavoriteListController

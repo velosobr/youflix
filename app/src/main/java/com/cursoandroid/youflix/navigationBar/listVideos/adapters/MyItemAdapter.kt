@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.cursoandroid.youflix.R
 import com.cursoandroid.youflix.navigationBar.listVideos.listeners.ItemClickListener
-import com.cursoandroid.youflix.navigationBar.listVideos.models.ItemData
+import com.cursoandroid.youflix.navigationBar.listVideos.models.VideoViewModel
 import com.squareup.picasso.Picasso
 
 class MyItemAdapter(
-    private val itemDataList: List<ItemData>,
+    private val itemDataList: List<VideoViewModel>,
     private var itemClickListener: ItemClickListener
 
 //TODO: se eu deixar o item click listener no construtor, como faço para enviar um lá no groups,
@@ -44,9 +44,9 @@ class MyItemAdapter(
     ) : RecyclerView.ViewHolder(itemView), View.OnClickListener, View.OnLongClickListener {
         var txt_item_title: TextView = itemView.findViewById(R.id.tvTitle_layoutItem)
         var cover: ImageView = itemView.findViewById(R.id.itemImageCover_layoutItem)
-        private lateinit var itemData: ItemData
+        private lateinit var itemData: VideoViewModel
 
-        fun config(itemFromAdapter: ItemData) {
+        fun config(itemFromAdapter: VideoViewModel) {
             itemData = itemFromAdapter
             txt_item_title.text = itemData.snippet.title
 

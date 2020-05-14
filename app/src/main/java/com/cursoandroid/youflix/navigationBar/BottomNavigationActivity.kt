@@ -3,6 +3,7 @@ package com.cursoandroid.youflix.navigationBar
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.cursoandroid.youflix.R
+import com.cursoandroid.youflix.navigationBar.listVideos.view.VideoGroupListFragment
 
 class BottomNavigationActivity : AppCompatActivity() {
 
@@ -12,6 +13,10 @@ class BottomNavigationActivity : AppCompatActivity() {
 
         setNavigationListener()
 
+        supportFragmentManager.beginTransaction().replace(
+            R.id.fragment_container,
+            VideoGroupListFragment()
+        ).commit()
 
     }
 
