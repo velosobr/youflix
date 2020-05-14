@@ -147,7 +147,7 @@ class MainActivity : AppCompatActivity() {
             restoreVideoList(
                 "snippet",
                 "date",
-                "40",
+                "5",
                 LocalData.YOUTUBE_API_KEY,
                 YoutubeConfig.channelList[channelPosition],
                 query
