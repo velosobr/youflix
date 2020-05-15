@@ -1,7 +1,12 @@
 package com.cursoandroid.youflix.navigationBar
 
+import androidx.fragment.app.FragmentTransaction
+
 interface BottomNavigationNavigator {
-    fun goToVideoGroupList()
-    fun goToFavoriteVideos()
+    fun loadVideosScreenFragment(
+        transaction: FragmentTransaction
+    )
+
+    fun loadFavoriteVideosFragment(transaction: FragmentTransaction)
 
 }
