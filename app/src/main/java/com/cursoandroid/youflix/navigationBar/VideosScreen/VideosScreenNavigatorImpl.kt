@@ -1,0 +1,3 @@
+package com.cursoandroid.youflix.navigationBar.VideosScreen
+
+class VideosScreenNavigatorImpl(videosScreenActivity: VideosScreenActivity) : VideosScreenNavigator
