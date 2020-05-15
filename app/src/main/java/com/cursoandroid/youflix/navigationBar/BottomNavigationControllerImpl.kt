@@ -1,17 +1,14 @@
 package com.cursoandroid.youflix.navigationBar
 
-import android.os.Handler
 import androidx.fragment.app.FragmentTransaction
-import com.cursoandroid.youflix.navigationBar.VideosScreen.fragment.VideosScreenFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class BottomNavigationControllerImpl(
-    private val navigator: BottomNavigationNavigatorImpl,
-    bottomNavigationActivity: BottomNavigationActivity
+    private val navigator: BottomNavigationNavigatorImpl
 ) : BottomNavigationController {
-    override fun onViewCreated(
-        transaction: FragmentTransaction,
-        videosScreenFragment: VideosScreenFragment
-    ) {
+    override fun onViewCreated(transaction: FragmentTransaction) {
         navigator.loadVideosScreenFragment(transaction)
     }
+
+
 }
