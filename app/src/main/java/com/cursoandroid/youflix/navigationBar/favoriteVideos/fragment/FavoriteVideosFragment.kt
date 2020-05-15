@@ -18,4 +18,5 @@ class FavoriteVideosFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_favorite_videos, container, false)
     }
 
+
 }
