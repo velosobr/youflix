@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.cursoandroid.youflix.R
-import com.cursoandroid.youflix.navigationBar.VideosScreen.fragment.VideosScreenFragment
+import com.cursoandroid.youflix.navigationBar.VideosScreen.view.VideosScreenFragment
 import com.cursoandroid.youflix.navigationBar.favoriteVideos.fragment.FavoriteVideosFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_bottom_navigation.*
