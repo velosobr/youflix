@@ -2,7 +2,6 @@ package com.cursoandroid.youflix.navigationBar.VideosScreen
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.Menu
 import android.widget.Toast
@@ -30,8 +29,6 @@ import retrofit2.Response
 import retrofit2.Retrofit
 
 class VideosScreenActivity : AppCompatActivity() {
-    private val navigator = VideosScreenNavigatorImpl(this)
-    private val controller = VideosControllerImpl(navigator, this, Handler())
 
     //widgets
     private lateinit var searchView: MaterialSearchView
@@ -50,8 +47,6 @@ class VideosScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Toast.makeText(this, "entrou no Oncreate", Toast.LENGTH_SHORT).show()
         setContentView(R.layout.activity_main)
-
-        controller.onViewCreated()
 
         //init components
         searchView = findViewById(R.id.searchView)
