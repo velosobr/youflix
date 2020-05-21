@@ -2,14 +2,17 @@ package com.cursoandroid.youflix.navigationBar
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.cursoandroid.youflix.R
-import com.cursoandroid.youflix.navigationBar.VideosScreen.view.VideosScreenFragment
+import com.cursoandroid.youflix.navigationBar.videosScreen.view.VideosScreenFragment
 import com.cursoandroid.youflix.navigationBar.favoriteVideos.fragment.FavoriteVideosFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_bottom_navigation.*
 
 class BottomNavigationActivity : AppCompatActivity() {
+    private lateinit var toolbar: Toolbar
+
     private val navigator = BottomNavigationNavigatorImpl()
     private val controller = BottomNavigationControllerImpl(navigator)
 
@@ -17,7 +20,12 @@ class BottomNavigationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bottom_navigation)
 
+        toolbar = findViewById(R.id.toolbar)
+        toolbar.title = "YouFlix"
+        setSupportActionBar(toolbar)
+
         setNavigationListener()
+
 
         controller.onViewCreated(
             supportFragmentManager.beginTransaction()
