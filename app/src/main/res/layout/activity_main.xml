@@ -6,7 +6,7 @@
     android:background="@color/cinza_bg"
     android:orientation="vertical"
 
-    tools:context=".navigationBar.VideosScreen.VideosScreenActivity">
+    tools:context=".navigationBar.videosScreen.VideosScreenActivity">
 
     <include layout="@layout/toolbar" />
 
@@ -18,7 +18,7 @@
         android:layout_weight="1">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/my_recyclr_view_main"
+            android:id="@+id/my_recyclr_view_mainOLD"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="none" />
