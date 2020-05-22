@@ -4,8 +4,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentTransaction
 
 interface BottomNavigationNavigator {
-    fun loadFavoriteVideosFragment(transaction: FragmentTransaction)
+    fun loadFavoriteVideosFragment(
+
+    )
+
     fun loadVideosScreenFragment(
-        transaction: FragmentTransaction
     )
 }

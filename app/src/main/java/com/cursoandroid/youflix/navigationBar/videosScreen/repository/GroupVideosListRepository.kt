@@ -1,7 +1,7 @@
 package com.cursoandroid.youflix.navigationBar.videosScreen.repository
 
-import com.cursoandroid.youflix.navigationBar.videosScreen.repository.service.GroupVideosListCalbacks
+import com.cursoandroid.youflix.navigationBar.videosScreen.repository.service.GroupVideosListCallbacks
 
 interface GroupVideosListRepository {
-    fun returnGroupMovieListRepository(groupVideosListCalbacks: GroupVideosListCalbacks)
+    fun returnGroupMovieListRepository(groupVideosListCallbacks: GroupVideosListCallbacks)
 }
