@@ -26,4 +26,8 @@ class GroupVideosListController(
 
 //        TODO: startActivity()
     }
+
+    fun onViewCreated() {
+        TODO("Not yet implemented")
+    }
 }

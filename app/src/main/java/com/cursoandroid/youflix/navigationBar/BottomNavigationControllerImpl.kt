@@ -8,9 +8,9 @@ class BottomNavigationControllerImpl(
     private val navigator: BottomNavigationNavigatorImpl
 ) : BottomNavigationController {
     override fun onViewCreated(
-        transaction: FragmentTransaction
+
     ) {
-        navigator.loadVideosScreenFragment(transaction)
+        navigator.loadVideosScreenFragment()
 
     }
 

@@ -13,7 +13,7 @@ import retrofit2.Response
 
 class GroupVideosListServiceImpl : GroupVideosListService {
     override fun returnGroupVideosListService(
-        groupVideosListServiceCallback: GroupVideosListCalbacks,
+        groupVideosListServiceCallback: GroupVideosListCallbacks,
         channelPosition: Int
     ) {
         var result: Resultado
@@ -34,7 +34,7 @@ class GroupVideosListServiceImpl : GroupVideosListService {
             object : Callback<Resultado> {
 
                 override fun onResponse(call: Call<Resultado>, response: Response<Resultado>) {
-                    Log.d("resultado", "resultado: $response")
+                    Log.i("resultado", "resultado: $response")
                     if (response.isSuccessful) {
                         result = response.body()!!
                         groupVideosList.add(
@@ -45,7 +45,6 @@ class GroupVideosListServiceImpl : GroupVideosListService {
                             )
                         )
                         groupVideosListServiceCallback.onSuccess(groupVideosList)
-                        return
                     }
                 }
 
