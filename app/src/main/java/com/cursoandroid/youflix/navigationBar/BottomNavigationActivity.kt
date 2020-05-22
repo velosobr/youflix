@@ -1,5 +1,6 @@
 package com.cursoandroid.youflix.navigationBar
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -9,11 +10,12 @@ import com.cursoandroid.youflix.navigationBar.videosScreen.view.VideosScreenFrag
 import com.cursoandroid.youflix.navigationBar.favoriteVideos.fragment.FavoriteVideosFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_bottom_navigation.*
+import java.lang.ref.WeakReference
 
 class BottomNavigationActivity : AppCompatActivity() {
     private lateinit var toolbar: Toolbar
 
-    private val navigator = BottomNavigationNavigatorImpl()
+    private val navigator = BottomNavigationNavigatorImpl(WeakReference<AppCompatActivity>(this))
     private val controller = BottomNavigationControllerImpl(navigator)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,14 +24,13 @@ class BottomNavigationActivity : AppCompatActivity() {
 
         toolbar = findViewById(R.id.toolbar)
         toolbar.title = "YouFlix"
+
         setSupportActionBar(toolbar)
 
         setNavigationListener()
 
 
-        controller.onViewCreated(
-            supportFragmentManager.beginTransaction()
-        )
+        controller.onViewCreated()
 
     }
 

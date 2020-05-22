@@ -2,7 +2,7 @@ package com.cursoandroid.youflix.navigationBar.videosScreen.repository.service
 
 interface GroupVideosListService {
     fun returnGroupVideosListService(
-        groupVideosListServiceCallback: GroupVideosListCalbacks,
+        groupVideosListServiceCallback: GroupVideosListCallbacks,
         channelPosition: Int
     )
 }

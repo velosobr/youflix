@@ -34,10 +34,10 @@ class VideosScreenFragment : Fragment(), GroupVideosListView {
     private lateinit var myRecyclerViewVideos: RecyclerView
     private lateinit var result: Resultado
 
-    override fun onAttach(context: Context) {
-        fragmentContext = context
-        super.onAttach(context)
-    }
+//    override fun onAttach(context: Context) {
+//        fragmentContext = context
+//        super.onAttach(context)
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,6 +73,10 @@ class VideosScreenFragment : Fragment(), GroupVideosListView {
             }
 
         })
+
+        view.videoGroupListRecyclerView.adapter = rvAdapter
+
+        controller.onViewCreated()
         return view
     }
 
