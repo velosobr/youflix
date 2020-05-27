@@ -4,7 +4,7 @@ import com.cursoandroid.youflix.navigationBar.videosScreen.models.VideosListView
 
 interface ItemClickListener {
 
-    fun onVideoClickListener(videosListViewModel: VideosListViewModel)
-    fun onVideoLongClickListener(videosListViewModel: VideosListViewModel)
+    fun onVideoClickListener(videosList: VideosListViewModel)
+    fun onVideoLongClickListener(videosList: VideosListViewModel)
 
 }

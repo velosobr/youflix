@@ -1,15 +1,17 @@
 package com.cursoandroid.youflix.navigationBar.videosScreen.repository.service
 
 import android.util.Log
+import android.widget.Toast
 import com.cursoandroid.youflix.Data.API.RetrofitConfig
 import com.cursoandroid.youflix.Data.API.VideosListAccess
 import com.cursoandroid.youflix.navigationBar.videosScreen.helper.YoutubeConfig
 import com.cursoandroid.youflix.navigationBar.videosScreen.models.GroupOfVideosListViewModel
 import com.cursoandroid.youflix.navigationBar.videosScreen.models.Resultado
 import com.cursoandroid.youflix.navigationBar.videosScreen.repository.LocalData
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.lang.ref.WeakReference
 
 class GroupVideosListServiceImpl : GroupVideosListService {
     override fun returnGroupVideosListService(
@@ -22,38 +24,25 @@ class GroupVideosListServiceImpl : GroupVideosListService {
         val groupOfVideosListServiceAccess =
             RetrofitConfig().returnRetrofit().create(VideosListAccess::class.java)
 
-        val requestCall: Call<Resultado> = groupOfVideosListServiceAccess.restoreVideosList(
-            "snippet",
-            "date",
-            "5",
-            LocalData.YOUTUBE_API_KEY,
-            YoutubeConfig.channelList[channelPosition]
-        )
+        GlobalScope.launch(Dispatchers.IO) {
+            val response = groupOfVideosListServiceAccess.restoreVideosList(
+                "snippet",
+                "date",
+                "5",
+                LocalData.YOUTUBE_API_KEY,
+                YoutubeConfig.channelList[channelPosition]
+            )
+            println("########################### response :$response")
+            groupVideosList.add(
+                GroupOfVideosListViewModel(
+                    response.body()!!.items[0].snippet.channelId,
+                    response.body()!!.items[0].snippet.channelTitle,
+                    response.body()!!.items
+                )
+            )
+            groupVideosListServiceCallback.onSuccess(groupVideosList)
+        }
 
-        requestCall.enqueue(
-            object : Callback<Resultado> {
-
-                override fun onResponse(call: Call<Resultado>, response: Response<Resultado>) {
-                    Log.i("resultado", "resultado: $response")
-                    if (response.isSuccessful) {
-                        result = response.body()!!
-                        groupVideosList.add(
-                            GroupOfVideosListViewModel(
-                                result.items[0].snippet.channelId,
-                                result.items[0].snippet.channelTitle,
-                                result.items
-                            )
-                        )
-                        groupVideosListServiceCallback.onSuccess(groupVideosList)
-                    }
-                }
-
-                override fun onFailure(call: Call<Resultado>, t: Throwable) {
-                    Log.e("error: ", "testando failure")
-                    t.printStackTrace()
-                    groupVideosListServiceCallback.onError()
-                }
-            })
     }
 
 }

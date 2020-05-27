@@ -4,5 +4,7 @@ import com.cursoandroid.youflix.navigationBar.videosScreen.models.GroupOfVideosL
 
 interface GroupVideosListView {
     fun setViewModel(viewModels: List<GroupOfVideosListViewModel>)
+    fun showGroupVideosList()
+    fun hideGroupVideosList()
 
 }
