@@ -8,10 +8,8 @@ class BottomNavigationControllerImpl(
     private val navigator: BottomNavigationNavigatorImpl
 ) : BottomNavigationController {
     override fun onViewCreated(
-
     ) {
         navigator.loadVideosScreenFragment()
-
     }
 
 
