@@ -2,7 +2,7 @@ package com.cursoandroid.youflix.navigationBar.videosScreen.repository.storage
 
 import com.cursoandroid.youflix.navigationBar.videosScreen.models.GroupOfVideosListViewModel
 
-object LocalGroupVideosGroupListStorageImpl : LocalGroupVideosListStorage {
+object GroupVideosListMemoryRepository : LocalGroupVideosListStorage {
 
     var groupOfVideosList: MutableList<GroupOfVideosListViewModel> = mutableListOf()
 

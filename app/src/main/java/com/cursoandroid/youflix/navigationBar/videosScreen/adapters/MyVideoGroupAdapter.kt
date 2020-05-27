@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.cursoandroid.youflix.R
 import com.cursoandroid.youflix.navigationBar.videosScreen.adapters.MyItemAdapter
 import com.cursoandroid.youflix.navigationBar.videosScreen.listeners.ItemClickListener
@@ -40,8 +39,8 @@ class MyVideoGroupAdapter(
         holder: MyViewHolder,
         position: Int
     ) {
-        val item = dataList[position]
-        holder.itemGroupTitle.text = item.headerTitle
+        val groupOfVideosList = dataList[position]
+        holder.itemGroupTitle.text = groupOfVideosList.headerTitle
 
         val itemData: List<VideosListViewModel> = dataList[position].listItem
 
@@ -65,5 +64,9 @@ class MyVideoGroupAdapter(
         var recyclerViewItemList: RecyclerView =
             itemView.findViewById(R.id.videoGroupListRecyclerView)
 
+    }
+
+    fun updateGroupVideosList(groupOfVideosList: List<GroupOfVideosListViewModel>) {
+        dataList.addAll(groupOfVideosList)
     }
 }
