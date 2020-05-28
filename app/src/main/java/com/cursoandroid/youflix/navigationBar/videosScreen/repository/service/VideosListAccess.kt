@@ -14,11 +14,11 @@ interface VideosListAccess {
     ?part=snippet
     &order=date
     &maxResults=20
-    &key=AIzaSyAHMsmSqDQRZcaXzdYI11sJx_jRpb2JmZQ
+    &key=ccccc
     &channelId=UCVHFbqXqoYvEWM1Ddxl0QDg
     &q=desenvolvimento+android
 
-    https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&maxResults=20&key=AIzaSyAHMsmSqDQRZcaXzdYI11sJx_jRpb2JmZQ&channelId=UCVHFbqXqoYvEWM1Ddxl0QDg
+    https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&maxResults=20&key=LocalData&channelId=UCVHFbqXqoYvEWM1Ddxl0QDg
      */
     @GET("search")
     suspend fun restoreVideosList(

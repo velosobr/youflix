@@ -3,11 +3,11 @@ package com.cursoandroid.youflix.navigationBar.videosScreen.helper
 object YoutubeConfig {
 
     val channelList: List<String> = mutableListOf(
-        "UCVHFbqXqoYvEWM1Ddxl0QDg",
-        "UClFbl7Rh9N17nTT1ppWn2MQ",
-        "UCib793mnUOhWymCh2VJKplQ",
-        "UC8butISFwT-Wl7EV0hUK0BQ",
-        "UCyHOBY6IDZF9zOKJPou2Rgg"
+        "UCVHFbqXqoYvEWM1Ddxl0QDg"
+//        "UClFbl7Rh9N17nTT1ppWn2MQ",
+//        "UCib793mnUOhWymCh2VJKplQ",
+//        "UC8butISFwT-Wl7EV0hUK0BQ",
+//        "UCyHOBY6IDZF9zOKJPou2Rgg"
 //        "UCplT2lzN6MHlVHHLt6so39A",
 //        "UCkqOofjb7nl6V8vXrIbGtiQ",
 //        "UCSfwM5u0Kce6Cce8_S72olg",
@@ -22,6 +22,23 @@ object YoutubeConfig {
 //        "UCX5OE2U4lKiRftuoMWb4y5g",
 //        "UCxG4XO2e2ZtLoBLaaBZcL1Q",
 //        "UCqGHoVTXn8YlaUVwEhmkT3Q"
+
+        /**
+        {
+        "error": {
+        "errors": [
+        {
+        "domain": "usageLimits",
+        "reason": "dailyLimitExceeded",
+        "message": "Daily Limit Exceeded. The quota will be reset at midnight Pacific Time (PT). You may monitor your quota usage and adjust limits in the API Console: https://console.developers.google.com/apis/api/youtube.googleapis.com/quotas?project=526787200790",
+        "extendedHelp": "https://console.developers.google.com/apis/api/youtube.googleapis.com/quotas?project=526787200790"
+        }
+        ],
+        "code": 403,
+        "message": "Daily Limit Exceeded. The quota will be reset at midnight Pacific Time (PT). You may monitor your quota usage and adjust limits in the API Console: https://console.developers.google.com/apis/api/youtube.googleapis.com/quotas?project=526787200790"
+        }
+        }
+         */
 
     )
 
