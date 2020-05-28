@@ -20,6 +20,7 @@ import com.cursoandroid.youflix.navigationBar.videosScreen.repository.GroupVideo
 import com.cursoandroid.youflix.navigationBar.videosScreen.repository.service.GroupVideosListServiceImpl
 import com.cursoandroid.youflix.navigationBar.videosScreen.repository.storage.GroupVideosListMemoryRepository
 import com.miguelcatalan.materialsearchview.MaterialSearchView
+import kotlinx.android.synthetic.main.fragment_layout_group.view.*
 import kotlinx.android.synthetic.main.fragment_videos_screen.*
 import kotlinx.android.synthetic.main.fragment_videos_screen.view.*
 import kotlinx.android.synthetic.main.fragment_videos_screen.view.my_recycler_view_main
@@ -28,15 +29,14 @@ import retrofit2.Retrofit
 class VideosScreenFragment : Fragment(), ItemClickListener, GroupVideosListView {
 
     private lateinit var fragmentContext: Context
-
     private lateinit var controller: GroupVideosListController
-//    private lateinit var presenter: GroupVideosListPresenterImpl
 
+    /**    private lateinit var presenter: GroupVideosListPresenterImpl
     private lateinit var searchView: MaterialSearchView
     private lateinit var retrofit: Retrofit
     private lateinit var myRecyclerViewVideos: RecyclerView
     private lateinit var result: Resultado
-
+     */
 
     override fun onAttach(context: Context) {
         fragmentContext = context
@@ -48,10 +48,17 @@ class VideosScreenFragment : Fragment(), ItemClickListener, GroupVideosListView 
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_videos_screen, container, false)
+        return inflater.inflate(R.layout.fragment_videos_screen, container, false)
+
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val GroupVideosListMemoryRepository = GroupVideosListMemoryRepository
         val groupVideosListService = GroupVideosListServiceImpl()
+
         val groupVideosListRepository =
             GroupVideosListRepositoryImpl(GroupVideosListMemoryRepository, groupVideosListService)
 
@@ -65,41 +72,20 @@ class VideosScreenFragment : Fragment(), ItemClickListener, GroupVideosListView 
             this
         )
 
-        myRecyclerViewVideos = view.findViewById(R.id.my_recycler_view_main)
+        val layoutManager = LinearLayoutManager(activity)
+        view.my_recycler_view_main.layoutManager = layoutManager
 
-//        view.my_recycler_view_main.layoutManager = LinearLayoutManager(activity)
-        myRecyclerViewVideos.layoutManager = LinearLayoutManager(activity)
-
-        val rvAdapter = MyVideoGroupAdapter(
-            fragmentContext,
-            this
-        )
-        /**
-         *object : ItemClickListener {
-        override fun onVideoClickListener(videosList: VideosListViewModel) {
-        controller.onSelectVideo(fragmentContext, videosList)
-        }
-
-        override fun onVideoLongClickListener(videosList: VideosListViewModel) {
-        TODO("Not yet implemented")
-        }
-
-        })
-         */
+        val rvAdapter = MyVideoGroupAdapter(fragmentContext, this)
         view.my_recycler_view_main.adapter = rvAdapter
-
         controller.onViewCreated()
-        return view
     }
 
-    /**
     override fun setViewModel(viewModels: List<GroupOfVideosListViewModel>) {
-    activity?.runOnUiThread{
-    val rvAdapter = videoGroupListRecyclerView.adapter as MyVideoGroupAdapter
-    rvAdapter.
+        activity?.runOnUiThread {
+            var rvAdapter = my_recycler_view_main.adapter as MyVideoGroupAdapter
+            rvAdapter.updateGroupVideosList(viewModels)
+        }
     }
-    }
-     */
 
     override fun onVideoClickListener(videosList: VideosListViewModel) {
         controller.onVideoClick(videosList)
@@ -109,13 +95,8 @@ class VideosScreenFragment : Fragment(), ItemClickListener, GroupVideosListView 
         controller.onVideoClick(videosList)
     }
 
-    override fun setViewModel(viewModels: List<GroupOfVideosListViewModel>) {
-        val rvAdapter = my_recycler_view_main.adapter as MyVideoGroupAdapter
-        rvAdapter.updateGroupVideosList(viewModels)
-    }
-
     override fun showGroupVideosList() {
-        TODO("Not yet implemented")
+        my_recycler_view_main.visibility = View.VISIBLE
     }
 
     override fun hideGroupVideosList() {

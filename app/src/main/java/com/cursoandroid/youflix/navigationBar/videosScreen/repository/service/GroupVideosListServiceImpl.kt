@@ -28,7 +28,7 @@ class GroupVideosListServiceImpl : GroupVideosListService {
             val response = groupOfVideosListServiceAccess.restoreVideosList(
                 "snippet",
                 "date",
-                "5",
+                "1",
                 LocalData.YOUTUBE_API_KEY,
                 YoutubeConfig.channelList[channelPosition]
             )
