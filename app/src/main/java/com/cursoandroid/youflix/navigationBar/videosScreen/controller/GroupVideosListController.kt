@@ -20,27 +20,30 @@ class GroupVideosListController(
     fun onVideoClick(videosListViewModel: VideosListViewModel) {
         navigator.goToPlayer(videosListViewModel)
     }
+
+
     fun onViewCreated() {
         var groupOfVideosList = localGroupVideosListStorage.returnGroupOfVideosList()
         if (groupOfVideosList.isEmpty()) {
-            println("Sim, o groupOfVideosList  está vazio")
             groupVideosListRepository.returnGroupMovieListRepository(object :
                 GroupVideosListCallbacks {
                 override fun onSuccess(GroupVideosList: MutableList<GroupOfVideosListViewModel>) {
-                    setViewModel(GroupVideosList)
+                    view.setViewModel(GroupVideosList)
                 }
+
                 override fun onError() {
                     TODO("Not yet implemented")
                 }
             })
         } else {
-            println("Nao, o groupOfVideosList  não está vazio")
-            println("Aqui está um exemplo de item do groupOfVideosList: " + groupOfVideosList[0].headerTitle + " " + groupOfVideosList[0].listItem[0].snippet.title)
-
-            setViewModel(groupOfVideosList)
+            println("##O groupOfVideosList  não está vazio, ele contém ${groupOfVideosList.size} listas de videos##")
+//            setViewModel(groupOfVideosList)
+            view.setViewModel(groupOfVideosList)
         }
     }
-    private fun setViewModel(groupVideosLists: MutableList<GroupOfVideosListViewModel>) {
-        view.setViewModel(groupVideosLists)
+    /**
+    private fun setViewModel(groupVideosList: MutableList<GroupOfVideosListViewModel>) {
+    view.setViewModel(groupVideosList)
     }
+     */
 }
