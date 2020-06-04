@@ -21,25 +21,40 @@ class GroupVideosListServiceImpl : GroupVideosListService {
         var result: Resultado
         val groupVideosList = mutableListOf<GroupOfVideosListViewModel>()
 
+        /**
+         *
+        https://www.googleapis.com/youtube/v3/videos?id=7lCDEYXw3mM&key=YOUR_API_KEY
+        &fields=items(id,snippet(channelId,title,categoryId),statistics)&part=snippet,statistics
+
+         */
         val groupOfVideosListServiceAccess =
             RetrofitConfig().returnRetrofit().create(VideosListAccess::class.java)
-
         GlobalScope.launch(Dispatchers.IO) {
             val response = groupOfVideosListServiceAccess.restoreVideosList(
                 "snippet",
                 "date",
-                "1",
+                "5",
                 LocalData.YOUTUBE_API_KEY,
                 YoutubeConfig.channelList[channelPosition]
             )
             println("########################### response :$response")
-            groupVideosList.add(
-                GroupOfVideosListViewModel(
-                    response.body()!!.items[0].snippet.channelId,
-                    response.body()!!.items[0].snippet.channelTitle,
-                    response.body()!!.items
+            if (response.isSuccessful) {
+                println("response.isSuccessful igual a: ${response.isSuccessful}")
+                println("Nome do canal igual a:  ${response.body()!!.items[0].snippet.channelTitle}")
+                groupVideosList.add(
+                    GroupOfVideosListViewModel(
+                        response.body()!!.items[0].snippet.channelId,
+                        response.body()!!.items[0].snippet.channelTitle,
+                        response.body()!!.items
+                    )
                 )
-            )
+            } else {
+                println("Response not worked, o resultado do response é igual a: " + response.body())
+            }
+            println("response.isSuccessful ${response.isSuccessful}")
+
+
+
             groupVideosListServiceCallback.onSuccess(groupVideosList)
         }
 

@@ -18,7 +18,7 @@ class GroupVideosListRepositoryImpl(
             groupVideosListService.returnGroupVideosListService(object : GroupVideosListCallbacks {
 
                 override fun onSuccess(GroupVideosList: MutableList<GroupOfVideosListViewModel>) {
-                    println("I'VE PASSED FOR HERE")
+                    println("returnGroupMovieListRepository / On success")
                     localGroupVideosGroupList.saveGroupOfVideosList(GroupVideosList)
                     groupVideosListCallbacks.onSuccess(GroupVideosList)
                 }
