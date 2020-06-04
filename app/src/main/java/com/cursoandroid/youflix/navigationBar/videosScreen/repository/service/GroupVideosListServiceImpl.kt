@@ -1,7 +1,5 @@
 package com.cursoandroid.youflix.navigationBar.videosScreen.repository.service
 
-import android.util.Log
-import android.widget.Toast
 import com.cursoandroid.youflix.Data.API.RetrofitConfig
 import com.cursoandroid.youflix.Data.API.VideosListAccess
 import com.cursoandroid.youflix.navigationBar.videosScreen.helper.YoutubeConfig
@@ -11,7 +9,6 @@ import com.cursoandroid.youflix.navigationBar.videosScreen.repository.LocalData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.lang.ref.WeakReference
 
 class GroupVideosListServiceImpl : GroupVideosListService {
     override fun returnGroupVideosListService(
@@ -33,7 +30,7 @@ class GroupVideosListServiceImpl : GroupVideosListService {
             val response = groupOfVideosListServiceAccess.restoreVideosList(
                 "snippet",
                 "date",
-                "5",
+                "1",
                 LocalData.YOUTUBE_API_KEY,
                 YoutubeConfig.channelList[channelPosition]
             )

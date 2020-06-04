@@ -42,13 +42,13 @@ class MyItemAdapter(
         itemView: View,
         private var itemClickListener: ItemClickListener
     ) : RecyclerView.ViewHolder(itemView), View.OnClickListener, View.OnLongClickListener {
-        var txt_item_title: TextView = itemView.findViewById(R.id.tvTitle_layoutItem)
-        var cover: ImageView = itemView.findViewById(R.id.itemImageCover_layoutItem)
+        private var txtItemTitle: TextView = itemView.findViewById(R.id.tvTitle_layoutItem)
+        private var cover: ImageView = itemView.findViewById(R.id.itemImageCover_layoutItem)
         private lateinit var videosListViewModel: VideosListViewModel
 
         fun config(itemFromAdapter: VideosListViewModel) {
             videosListViewModel = itemFromAdapter
-            txt_item_title.text = videosListViewModel.snippet.title
+            txtItemTitle.text = videosListViewModel.snippet.title
 
 
             val urlMedium: String? = videosListViewModel.snippet.thumbnails.medium.url

@@ -1,22 +1,16 @@
 package com.cursoandroid.youflix.navigationBar
 
-import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.cursoandroid.youflix.R
-import com.cursoandroid.youflix.navigationBar.videosScreen.view.VideosScreenFragment
 import com.cursoandroid.youflix.navigationBar.favoriteVideos.fragment.FavoriteVideosFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.cursoandroid.youflix.navigationBar.videosScreen.view.VideosScreenFragment
 import kotlinx.android.synthetic.main.activity_bottom_navigation.*
-import java.lang.ref.WeakReference
 
 class BottomNavigationActivity : AppCompatActivity() {
     private lateinit var toolbar: Toolbar
-
-    private val navigator = BottomNavigationNavigatorImpl(WeakReference<AppCompatActivity>(this))
-    private val controller = BottomNavigationControllerImpl(navigator)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,15 +23,18 @@ class BottomNavigationActivity : AppCompatActivity() {
 
         setNavigationListener()
 
+//        bottom_navigation.selectedItemId = R.id.nav_videos
 
-        controller.onViewCreated()
+//        supportFragmentManager.beginTransaction().add(
+//            R.id.fragment_container,
+//            VideosScreenFragment()
+//        ).commit()
 
     }
 
     private fun setNavigationListener() {
-        val bottomNavigation: BottomNavigationView = bottom_navigation
 
-        bottomNavigation.setOnNavigationItemSelectedListener { item ->
+        bottom_navigation.setOnNavigationItemSelectedListener { item ->
             var selectedFragment: Fragment? = null
 
             when (item.itemId) {

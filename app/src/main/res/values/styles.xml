@@ -16,10 +16,5 @@
 
     </style>
 
-    <style name="MyBottom">
-        <item name="colorControlHighlight">@color/colorAccent</item>
-        <item name="colorButtonNormal">@color/colorPrimary</item>
-    </style>
-
 
 </resources>
