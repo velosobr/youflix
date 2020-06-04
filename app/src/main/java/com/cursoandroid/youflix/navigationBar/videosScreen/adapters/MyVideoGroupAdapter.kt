@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cursoandroid.youflix.R
 import com.cursoandroid.youflix.navigationBar.videosScreen.adapters.MyItemAdapter
 import com.cursoandroid.youflix.navigationBar.videosScreen.listeners.ItemClickListener
-import com.cursoandroid.youflix.navigationBar.videosScreen.models.VideosListViewModel
 import com.cursoandroid.youflix.navigationBar.videosScreen.models.GroupOfVideosListViewModel
+import com.cursoandroid.youflix.navigationBar.videosScreen.models.VideosListViewModel
 
 class MyVideoGroupAdapter(
     private val context: Context,
@@ -26,7 +26,7 @@ class MyVideoGroupAdapter(
     ): MyViewHolder {
         val itemView: View =
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.fragment_layout_group, parent, false)
+                .inflate(R.layout.layout_group, parent, false)
 
         return MyViewHolder(itemView)
     }
