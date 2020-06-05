@@ -1,9 +1,9 @@
 package com.cursoandroid.youflix.navigationBar.videosScreen.repository
 
-import com.cursoandroid.youflix.navigationBar.videosScreen.helper.YoutubeConfig
 import com.cursoandroid.youflix.navigationBar.videosScreen.models.GroupOfVideosListViewModel
 import com.cursoandroid.youflix.navigationBar.videosScreen.repository.service.GroupVideosListCallbacks
 import com.cursoandroid.youflix.navigationBar.videosScreen.repository.service.GroupVideosListServiceImpl
+import com.cursoandroid.youflix.navigationBar.videosScreen.repository.service.YoutubeConfig
 import com.cursoandroid.youflix.navigationBar.videosScreen.repository.storage.LocalGroupVideosListStorage
 
 class GroupVideosListRepositoryImpl(

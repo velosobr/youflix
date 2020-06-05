@@ -1,4 +1,4 @@
-package com.cursoandroid.youflix.navigationBar.videosScreen.helper
+package com.cursoandroid.youflix.navigationBar.videosScreen.repository.service
 
 object YoutubeConfig {
 
@@ -6,8 +6,8 @@ object YoutubeConfig {
 //        "UCVHFbqXqoYvEWM1Ddxl0QDg",
 //        "UClFbl7Rh9N17nTT1ppWn2MQ",
 //        "UCib793mnUOhWymCh2VJKplQ",
-//        "UC8butISFwT-Wl7EV0hUK0BQ",
-//        "UCyHOBY6IDZF9zOKJPou2Rgg",
+        "UC8butISFwT-Wl7EV0hUK0BQ",
+        "UCyHOBY6IDZF9zOKJPou2Rgg",
 //        "UCplT2lzN6MHlVHHLt6so39A",
 //        "UCkqOofjb7nl6V8vXrIbGtiQ",
         "UCSfwM5u0Kce6Cce8_S72olg"

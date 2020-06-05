@@ -7,10 +7,6 @@ object GroupVideosListMemoryRepository : LocalGroupVideosListStorage {
     var groupOfVideosList: MutableList<GroupOfVideosListViewModel> = mutableListOf()
 
     override fun saveGroupOfVideosList(groupOfVideosListViewModel: MutableList<GroupOfVideosListViewModel>) {
-        if (groupOfVideosList.isNotEmpty()) {
-//            println("saveGroupOfVideosList, groupOfVideosList.isNotEmpty: " + groupOfVideosList[0].headerTitle)
-            showGroupOfVideosList()
-        }
         this.groupOfVideosList.addAll(groupOfVideosListViewModel)
     }
 
@@ -22,9 +18,5 @@ object GroupVideosListMemoryRepository : LocalGroupVideosListStorage {
         return groupOfVideosList.find { it.groupOfVideosListId == groupOfVideosListId }!!
     }
 
-    private fun showGroupOfVideosList() {
-        for (channel in groupOfVideosList) {
-            println("Testando a inclusão dos canais ${channel.headerTitle}")
-        }
-    }
+
 }

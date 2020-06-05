@@ -16,6 +16,8 @@ import com.cursoandroid.youflix.navigationBar.videosScreen.models.VideosListView
 class MyVideoGroupAdapter(
     private val context: Context,
     private var itemClickListener: ItemClickListener
+    // TODO 1: RECEBER dataList pelo construtor /
+//    private var dataList: MutableList<GroupOfVideosListViewModel>
 
 ) : RecyclerView.Adapter<MyVideoGroupAdapter.MyViewHolder>() {
     private var dataList = mutableListOf<GroupOfVideosListViewModel>()
@@ -66,7 +68,9 @@ class MyVideoGroupAdapter(
 
     }
 
+    //TODO 2: Excluir esse metodo após ser feito refactory do datalist, citado no todo 1
     fun updateGroupVideosList(groupOfVideosList: List<GroupOfVideosListViewModel>) {
         dataList.addAll(groupOfVideosList)
+        notifyDataSetChanged()
     }
 }
