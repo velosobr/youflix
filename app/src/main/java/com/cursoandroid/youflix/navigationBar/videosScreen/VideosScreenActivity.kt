@@ -13,7 +13,7 @@ package com.cursoandroid.youflix.navigationBar.videosScreen
 //import com.cursoandroid.youflix.R
 //import com.cursoandroid.youflix.navigationBar.videosScreen.activity.PlayerActivity
 //import com.cursoandroid.youflix.navigationBar.videosScreen.data.LocalData
-//import com.cursoandroid.youflix.navigationBar.videosScreen.helper.YoutubeConfig
+//import com.cursoandroid.youflix.navigationBar.videosScreen.repository.service.YoutubeConfig
 //import com.cursoandroid.youflix.navigationBar.videosScreen.listeners.ItemClickListener
 //import com.cursoandroid.youflix.navigationBar.videosScreen.models.VideosListViewModel
 //import com.cursoandroid.youflix.navigationBar.videosScreen.models.GroupOfVideosListViewModel

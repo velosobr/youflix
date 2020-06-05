@@ -76,8 +76,10 @@ class VideosScreenFragment : Fragment(), ItemClickListener, GroupVideosListView 
         controller.onViewCreated()
     }
 
-    override fun setViewModel(viewModels: List<GroupOfVideosListViewModel>) {
+    override fun setViewModel(viewModels: MutableList<GroupOfVideosListViewModel>) {
         activity?.runOnUiThread {
+//            val rvAdapter = MyVideoGroupAdapter(fragmentContext, this, viewModels)
+//            my_recycler_view_main.adapter = rvAdapter
             val rvAdapter = my_recycler_view_main.adapter as MyVideoGroupAdapter
             rvAdapter.updateGroupVideosList(viewModels)
         }
