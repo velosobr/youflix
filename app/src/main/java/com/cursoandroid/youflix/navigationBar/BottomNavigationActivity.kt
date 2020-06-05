@@ -23,7 +23,7 @@ class BottomNavigationActivity : AppCompatActivity() {
 
         setNavigationListener()
 
-//        bottom_navigation.selectedItemId = R.id.nav_videos
+        bottom_navigation.selectedItemId = R.id.nav_videos
 
 //        supportFragmentManager.beginTransaction().add(
 //            R.id.fragment_container,

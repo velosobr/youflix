@@ -1,6 +1,6 @@
 package com.cursoandroid.youflix.Data.API
 
-import com.cursoandroid.youflix.navigationBar.videosScreen.helper.YoutubeConfig
+import com.cursoandroid.youflix.navigationBar.videosScreen.repository.service.YoutubeConfig
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
