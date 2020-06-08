@@ -12,8 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".navigationBar.BottomNavigationActivity" />
-        <activity android:name=".navigationBar.listVideos.activity.PlayerActivity" />
-        <activity android:name=".navigationBar.listVideos.activity.MainActivity" />
+        <activity android:name=".navigationBar.videosScreen.activity.PlayerActivity" />
+        <activity android:name=".navigationBar.videosScreen.VideosScreenActivity" />
         <activity
             android:name=".Login.LoginActivity"
             android:theme="@style/AppCompat.TelaCheia" />
