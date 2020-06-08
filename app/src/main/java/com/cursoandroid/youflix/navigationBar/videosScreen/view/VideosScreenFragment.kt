@@ -40,7 +40,6 @@ class VideosScreenFragment : Fragment(), ItemClickListener, GroupVideosListView 
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        println("NOTWORKING: Entrou no oncreateView, porém não funcionou")
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_videos_screen, container, false)
@@ -91,6 +90,7 @@ class VideosScreenFragment : Fragment(), ItemClickListener, GroupVideosListView 
 
     override fun onVideoLongClickListener(videosList: VideosListViewModel) {
         controller.onVideoClick(videosList)
+        TODO("Favoritar videos")
     }
 
     override fun showGroupVideosList() {

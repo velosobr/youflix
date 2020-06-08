@@ -36,8 +36,6 @@ class GroupVideosListController(
                 }
             })
         } else {
-            println("##O groupOfVideosList  não está vazio, ele contém ${groupOfVideosList.size} listas de videos##")
-//            setViewModel(groupOfVideosList)
             view.setViewModel(groupOfVideosList)
         }
     }

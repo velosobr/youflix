@@ -15,12 +15,7 @@ import com.squareup.picasso.Picasso
 class MyItemAdapter(
     private val videosListViewModelList: List<VideosListViewModel>,
     private var itemClickListener: ItemClickListener
-
-//TODO: se eu deixar o item click listener no construtor, como faço para enviar um lá no groups,
-// na hora que tiver que passar por paramtro?
 ) : Adapter<MyItemAdapter.MyViewHolder>() {
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view: View =
             LayoutInflater.from(parent.context).inflate(R.layout.layout_item, parent, false)
@@ -56,8 +51,6 @@ class MyItemAdapter(
             if (urlMedium != null) {
                 Picasso.get().load(urlMedium).into(cover)
             }
-
-
             itemView.setOnClickListener(this)
             itemView.setOnLongClickListener(this)
         }

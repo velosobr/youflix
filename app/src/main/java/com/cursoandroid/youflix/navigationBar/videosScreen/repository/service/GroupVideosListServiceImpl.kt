@@ -29,14 +29,12 @@ class GroupVideosListServiceImpl : GroupVideosListService {
             val response = groupOfVideosListServiceAccess.restoreVideosList(
                 "snippet",
                 "date",
-                "2",
+                "5",
                 LocalData.YOUTUBE_API_KEY,
                 YoutubeConfig.channelList[channelPosition]
             )
             println("########################### response :$response")
             if (response.isSuccessful) {
-                println("response.isSuccessful igual a: ${response.isSuccessful}")
-                println("Nome do canal igual a:  ${response.body()!!.items[0].snippet.channelTitle}")
                 groupVideosList.add(
                     GroupOfVideosListViewModel(
                         response.body()!!.items[0].snippet.channelId,
@@ -44,12 +42,7 @@ class GroupVideosListServiceImpl : GroupVideosListService {
                         response.body()!!.items
                     )
                 )
-            } else {
-                println("Response not worked, o resultado do response é igual a: " + response.body())
             }
-            println("response.isSuccessful ${response.isSuccessful}")
-
-
 
             groupVideosListServiceCallback.onSuccess(groupVideosList)
         }
