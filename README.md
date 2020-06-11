@@ -6,6 +6,6 @@ trying to make it robust, maintainable, testable and flexible enough to adapt to
 
 ### 3 main use cases:
 
-Get a list of videos.
-Show details for an specific clicked Video.
-Play a Video.
+- Get a list of videos. OK
+- Show details for an specific clicked Video. OK
+- Play a Video. OK
