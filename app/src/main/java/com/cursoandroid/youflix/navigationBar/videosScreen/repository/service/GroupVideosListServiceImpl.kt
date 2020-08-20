@@ -36,6 +36,7 @@ class GroupVideosListServiceImpl : GroupVideosListService {
             println("########################### response :$response")
             if (response.isSuccessful) {
                 groupVideosList.add(
+                    channelPosition,
                     GroupOfVideosListViewModel(
                         response.body()!!.items[0].snippet.channelId,
                         response.body()!!.items[0].snippet.channelTitle,
